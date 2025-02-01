@@ -361,3 +361,4 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/WebSiteAPI.Application/Features/Queries/RolePermission/GetPermissionsByRoleQuery/GetPermissionsByRoleQueryResponse.cs
