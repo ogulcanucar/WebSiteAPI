@@ -1,0 +1,26 @@
+﻿@model WebSiteAPI.Application.Features.Commands.AppRole.UpdateRole.UpdateRoleCommandRequest
+
+
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+}
+
+<form method="post" asp-controller="Role" asp-action="Update">
+    <input type="hidden" asp-for="RoleId" />
+
+    <div class="form-group">
+        <label for="roleName">Rol Adı</label>
+        <input type="text" id="roleName" asp-for="NewRoleName" class="form-control" required />
+    </div>
+
+    <button type="submit" class="btn btn-success">Güncelle</button>
+    <a asp-controller="Role" asp-action="List" class="btn btn-secondary">İptal</a>
+</form>

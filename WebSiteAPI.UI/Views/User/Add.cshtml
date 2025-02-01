@@ -1,0 +1,102 @@
+﻿@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="col-12">
+    <div class="row">
+        <div class="col-sm-8 m-auto">
+            <div class="card">
+                <div class="card-body">
+                    <div class="title-header option-title">
+                        <h5>Yeni Kullanıcı Ekle</h5>
+                    </div>
+                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="pills-home-tab"
+                                    data-bs-toggle="pill" data-bs-target="#pills-home"
+                                    type="button">
+                                Hesap
+                            </button>
+                        </li>
+                        @* <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-profile-tab"
+                        data-bs-toggle="pill" data-bs-target="#pills-profile"
+                        type="button">
+                        Pernission
+                        </button>
+                        </li>*@
+                    </ul>
+
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel">
+                            <form method="post" asp-controller="User" asp-action="Add" class="theme-form theme-form-2 mega-form" >
+                                <div class="card-header-1">
+                                    <h5>Kullanıcı Bilgileri</h5>
+                                </div>
+
+                                <div class="row">
+                                    <div class="mb-4 row align-items-center">
+                                        <label class="form-label-title col-lg-2 col-md-3 mb-0">
+                                            Ad
+                                        </label>
+                                        <div class="col-md-9 col-lg-10">
+                                            <input class="form-control" type="text" name="Name" id="Name">
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-4 row align-items-center">
+                                        <label class="col-lg-2 col-md-3 col-form-label form-label-title">
+                                            Soyad
+                                        </label>
+                                        <div class="col-md-9 col-lg-10">
+                                            <input class="form-control" type="text" name="Surname" id="Surname">
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-4 row align-items-center">
+                                        <label class="col-lg-2 col-md-3 col-form-label form-label-title">Kullanıcı Adı</label>
+                                        <div class="col-md-9 col-lg-10">
+                                            <input class="form-control" type="text" name="Username" id="Username">
+                                        </div>
+                                    </div>
+
+                                    <div class="row align-items-center">
+                                        <label class="col-lg-2 col-md-3 col-form-label form-label-title">
+                                            E-posta Adresi
+                                        </label>
+                                        <div class="col-md-9 col-lg-10">
+                                            <input class="form-control" type="email" name="Email" id="Email">
+                                        </div>
+                                    </div>
+
+                                    <div class="row align-items-center">
+                                        <label class="col-lg-2 col-md-3 col-form-label form-label-title">Şifre</label>
+                                        <div class="col-md-9 col-lg-10">
+                                            <input class="form-control" type="password" name="Password" id="Password">
+                                        </div>
+                                    </div>
+
+                                    <div class="row align-items-center">
+                                        <label class="col-lg-2 col-md-3 col-form-label form-label-title">Şifre Tekrar</label>
+                                        <div class="col-md-9 col-lg-10">
+                                            <input class="form-control" type="password" name="PasswordConfirm" id="PasswordConfirm">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-3">
+                                        <div class="col-lg-2 col-md-3"></div>
+                                        <div class="col-md-9 col-lg-10">
+                                            <button class="btn btn-primary" type="submit">Kaydet</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

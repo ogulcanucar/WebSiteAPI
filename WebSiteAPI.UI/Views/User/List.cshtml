@@ -1,0 +1,137 @@
+﻿@{
+    ViewData["Title"] = "List";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="col-sm-12">
+    <div class="card card-table">
+        <div class="card-body">
+            <div class="title-header option-title">
+                <h5>Kullanıcılar</h5>
+                <form class="d-inline-flex">
+                    <a asp-action="Add" class="align-items-center btn btn-theme d-flex">
+                        <i data-feather="plus"></i>Yeni Kullanıcı Ekle
+                    </a>
+                </form>
+            </div>
+            <div class="table-responsive table-product">
+                <table class="table all-package theme-table" id="table_id">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Ad</th>
+                            <th>Soyad</th>
+                            <th>E-posta</th>
+                            <th>İki Adımlı Doğrulama</th>
+                            <th>İşlem</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model.Users)
+                        {
+                            <tr>
+                                @*<td>@user.Id</td>*@
+                                <td>@user.Name</td>
+                                <td>@user.Surname</td>
+                                <td>@user.Email</td>
+                                <td>@(user.TwoFactorEnabled ? "Evet" : "Hayır")</td>
+                                <td>
+                                    <ul class="table-action">
+                                        <li>
+                                            <a href="order-detail.html" class="view" data-toggle="tooltip" title="Görüntüle">
+                                                <i class="ri-eye-line"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)" class="edit" data-toggle="tooltip" title="Düzenle">
+                                                <i class="ri-pencil-line"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)" class="delete" data-bs-toggle="modal" data-bs-target="#exampleModalToggle"
+                                           data-userid="@user.Id" data-username="@user.Name" data-usersurname="@user.Surname" data-useremail="@user.Email">
+                                                <i class="ri-delete-bin-line"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Emin misiniz?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+            </div>
+            <div class="modal-body">
+                <p>Aşağıdaki bilgilere sahip kullanıcıyı silmek istediğinizden emin misiniz?</p>
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>Adı:</strong> <span id="deleteUserName"></span></li>
+                    <li class="list-group-item"><strong>Soyadı:</strong> <span id="deleteUserSurname"></span></li>
+                    <li class="list-group-item"><strong>E-posta:</strong> <span id="deleteUserEmail"></span></li>
+                </ul>
+                <input type="hidden" id="deleteUserId" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-animation btn-md fw-bold" data-bs-dismiss="modal">Hayır</button>
+                <button type="button" class="btn btn-animation btn-md fw-bold danger" data-bs-target="#exampleModalToggle2"
+                        data-bs-toggle="modal" data-bs-dismiss="modal" onclick="confirmDelete()">
+                    Evet
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function confirmDelete() {
+        var userId = document.getElementById("deleteUserId").value;
+        var userName = document.getElementById("deleteUserName").textContent;
+        var userSurname = document.getElementById("deleteUserSurname").textContent;
+        var userEmail = document.getElementById("deleteUserEmail").textContent;
+
+        // Ajax çağrısı için gerekli parametreleri ayarlayın
+        var data = {
+            UserId: userId,
+            userName: userName,
+            userSurname: userSurname,
+            userEmail: userEmail
+        };
+
+        // Ajax çağrısı yapın
+        $.ajax({
+            url: '/User/Delete', // .NET Core tarafındaki Delete metodu için uygun URL'yi belirtin
+            type: 'Delete',
+            data: data,
+            success: function (response) {
+            },
+            error: function (error) {
+                // Silme işlemi sırasında hata oluştuğunda yapılacak işlemleri burada gerçekleştirin
+            }
+        });
+    }
+
+
+    document.querySelectorAll('.delete').forEach(function (deleteButton) {
+        deleteButton.addEventListener('click', function () {
+            var userId = this.dataset.userid;
+            var userName = this.dataset.username;
+            var userSurname = this.dataset.usersurname;
+            var userEmail = this.dataset.useremail;
+
+            document.getElementById("deleteUserId").value = userId;
+            document.getElementById("deleteUserName").textContent = userName;
+            document.getElementById("deleteUserSurname").textContent = userSurname;
+            document.getElementById("deleteUserEmail").textContent = userEmail;
+        });
+    });
+</script>

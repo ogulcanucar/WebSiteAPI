@@ -1,0 +1,125 @@
+﻿@{
+    ViewData["Title"] = "Create Product";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@if (ViewBag.Authenticated != null && (bool)ViewBag.Authenticated)
+{
+    <div class="alert alert-success">Kullanıcı giriş yapmış.</div>
+    <p>Kullanıcı ID: @ViewBag.UserId</p>
+    <p>Roller: @(ViewBag.UserRoles != null ? string.Join(", ", ViewBag.UserRoles) : "Rol bulunamadı")</p>
+}
+else
+{
+    <div class="alert alert-danger">Kullanıcı giriş yapmamış!</div>
+}
+<div class="row">
+    <div class="col-sm-8 m-auto">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-header-2">
+                    <h5>Ürün Ekleme</h5>
+                </div>
+                <form asp-action="Add" asp-controller="Product" method="post" class="theme-form theme-form-2 mega-form">
+                    <div class="mb-4 row align-items-center">
+                        <label class="form-label-title col-sm-3 mb-0">
+                            Ürün Adı
+                        </label>
+                        <div class="col-sm-9">
+                            <input type="text" id="Name" name="Name" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="mb-4 row align-items-center">
+                        <label class="form-label-title col-sm-3 mb-0">
+                            Ürün Açıklaması
+                        </label>
+                        <div class="col-sm-9">
+                            <textarea id="Description" name="Description" class="form-control" rows="3" required></textarea>
+
+                        </div>
+                    </div>
+                    <div class="mb-4 row align-items-center">
+                        <label class="form-label-title col-sm-3 mb-0">
+                            Ürün Özelliği
+                        </label>
+                        <div class="col-sm-9">
+                            <textarea id="Material" name="Material" class="form-control" rows="3" required></textarea>
+
+                        </div>
+                    </div>
+                    <div class="mb-4 row align-items-center">
+                        <label class="form-label-title col-sm-3 mb-0">
+                            Ürün Özelliği
+                        </label>
+                        <div class="col-sm-9">
+                            <textarea id="Material2" name="Material2" class="form-control" rows="3"></textarea>
+
+                        </div>
+                    </div>
+                    <div class="mb-4 row align-items-center">
+                        <label class="form-label-title col-sm-3 mb-0">
+                            Ürün Özelliği
+                        </label>
+                        <div class="col-sm-9">
+                            <textarea id="Material3" name="Material3" class="form-control" rows="3"></textarea>
+
+                        </div>
+                    </div>
+                    <div class="mb-4 row align-items-center">
+                        <label class="form-label-title col-sm-3 mb-0">
+                            Ürün Fiyatı
+                        </label>
+                        <div class="col-sm-9">
+
+                            <input type="number" id="Price" name="Price" class="form-control" step="0.01" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-4 row align-items-center">
+                        @if (ViewBag.Categories != null)
+                        {
+                            @foreach (var category in ViewBag.Categories)
+                            {
+                                <div class="row">
+                                    <label class="col-sm-3 col-form-label form-label-title">@category.Name</label>
+                                    <div class="col-sm-9">
+                                        <label class="switch">
+
+                                            <input type="checkbox" value="@category.Id" name="Categories" id="@category.Id">
+                                            <span class="switch-state"></span>
+
+                                        </label>
+                                    </div>
+                                </div>
+                            }
+                        }
+
+                    </div>
+                    <div class="mb-4 row align-items-center">
+
+                        <div class="row">
+                            <label class="col-sm-3 col-form-label form-label-title">Popüler</label>
+                            <div class="col-sm-9">
+                                <label class="switch">
+
+                                    <input type="checkbox" value="true" name="Populer" id="Populer">
+                                    <span class="switch-state"></span>
+
+                                </label>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                </form>
+
+
+
+
+
+            </div>
+        </div>
+
+
+    </div>
+</div>

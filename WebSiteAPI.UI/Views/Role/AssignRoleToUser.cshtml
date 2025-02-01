@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewData["Title"] = "AssignRoleToUser";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml"; 
+ 
+}
+
+@{
+    ViewData["Title"] = "Kullanıcıya Rol Ata";
+}
+
+<h2>Kullanıcıya Rol Ata</h2>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+<form method="post" action="/Role/AssignRoleToUser">
+    <div class="form-group">
+        <label for="userId">Kullanıcı Seç</label>
+        <select class="form-control" id="userId" name="userId" required>
+            <option value="">Bir kullanıcı seçin</option>
+            @foreach (var user in ViewBag.Users)
+            {
+                <option value="@user.Id">@user.UserName</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="roleNames">Roller</label>
+        <select class="form-control" id="roleNames" name="roleNames" multiple required>
+            @foreach (var role in ViewBag.Roles)
+            {
+                <option value="@role">@role</option>
+            }
+        </select>
+        <small>Birden fazla rol seçmek için Ctrl tuşuna basılı tutarak seçin.</small>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Ata</button>
+</form>

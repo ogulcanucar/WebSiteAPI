@@ -1,0 +1,178 @@
+﻿@using WebSiteAPI.Application.Features.Queries.Product.GetByCategoryIdProduct;
+@{
+    ViewData["Title"] = "ProductList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="main-header" style="background-image:url(assets/images/gallery-2.jpg)">
+    <header>
+        <div class="container">
+            <h1 class="h2 title">@ViewData["Page1"]</h1>
+        </div>
+    </header>
+</section>
+<section class="products">
+
+    <div class="container">
+
+        <header class="hidden">
+            <h3 class="h3 title">Product category with topbar</h3>
+        </header>
+
+        <div class="row">
+
+            <!-- === produc0t-item === -->
+            @foreach (var product in Model.Products)
+            {
+                <div class="col-md-4 col-xs-6">
+                    <article>
+                        <div class="info">
+                            @*        <span class="add-favorite">
+                        <a href="javascript:void(0);" data-title="Add to favorites" data-title-added="Added to favorites list"><i class="icon icon-heart"></i></a>
+                        </span>*@
+                            <span>
+                                <a href="#@product.Id" class="mfp-open" data-title="Detaylı incele"><i class="icon icon-eye"></i></a>
+                            </span>
+                        </div>
+                        <div class="btn btn-add">
+                            <i class="icon icon-cart"></i>
+                        </div>
+                        <div class="figure-grid">
+                            <div class="image">
+                                @foreach (var image in product.ProductImageFiles)
+                                {
+                                    <a href="#@product.Id" class="mfp-open">
+                                        <img src="~/photo-images/@image.FileName" alt="@product.Name" width="360" />
+                                    </a>
+                                    break;
+                                }
+                            </div>
+                            <div class="text">
+                                <h2 class="title h4"><a href="#"> @product.Name</a></h2>
+                                <sub>
+                                    @{
+                                        decimal a = product.Price;
+                                        decimal p = 10 * a / 100;
+                                        p += product.Price;
+                                    } @p ₺
+                                </sub>
+                                <sup>@product.Price ₺</sup>
+                                <span class="description clearfix">@product.Description</span>
+                            </div>
+                        </div>
+
+                    </article>
+                </div>
+
+
+                <div class="popup-main mfp-hide" id="@product.Id">
+
+                    <!-- === product popup === -->
+
+                    <div class="product">
+
+                        <!-- === popup-title === -->
+
+                        <div class="popup-title">
+                            <div class="h1 title">
+                                @product.Name
+                            </div>
+                        </div>
+
+                        <!-- === product gallery === -->
+
+                        <div class="owl-product-gallery">
+                            @foreach (var image in product.ProductImageFiles)
+                            {
+                                <a href="@product.Id">
+                                    <img src="~/photo-images/@image.FileName" alt="@product.Name" width="640" />
+                                </a>
+                                break;
+                            }
+                        </div>
+
+                        <!-- === product-popup-info === -->
+
+                        <div class="popup-content">
+                            <div class="product-info-wrapper">
+                                <div class="row">
+
+                                    <!-- === left-column === -->
+
+                                    <div class="col-sm-6">
+                                        <div class="info-box">
+                                            <strong>Malzeme</strong>
+                                            <span>@product.Material</span>
+                                        </div>
+                                        @if (product.Material2 != null)
+                                        {
+                                            <div class="info-box">
+                                                <strong>Malzeme</strong>
+                                                <span>@product.Material2</span>
+                                            </div>
+                                        }
+                                        @if (product.Material3 != null)
+                                        {
+                                            <div class="info-box">
+                                                <strong>Malzeme</strong>
+                                                <span>@product.Material3</span>
+                                            </div>
+                                        }
+
+                                        <div class="info-box">
+                                            <strong>Stok</strong>
+                                            <span><i class="fa fa-check-square-o"></i> Stokta Var</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- === right-column === -->
+
+                                    <div class="col-sm-6">
+                                        <div class="info-box">
+                                            <strong>Renk Seçenekleri</strong>
+                                            <div class="product-colors clearfix">
+                                                <span class="color-btn color-btn-red"></span>
+                                                <span class="color-btn color-btn-blue checked"></span>
+                                                <span class="color-btn color-btn-green"></span>
+                                                <span class="color-btn color-btn-gray"></span>
+                                                <span class="color-btn color-btn-biege"></span>
+                                            </div>
+                                        </div>
+                                        @*<div class="info-box">
+                                    <strong>Choose size</strong>
+                                    <div class="product-colors clearfix">
+                                    <span class="color-btn color-btn-biege">S</span>
+                                    <span class="color-btn color-btn-biege checked">M</span>
+                                    <span class="color-btn color-btn-biege">XL</span>
+                                    <span class="color-btn color-btn-biege">XXL</span>
+                                    </div>
+                                    </div>*@
+                                    </div>
+
+                                </div><!--/row-->
+                            </div> <!--/product-info-wrapper-->
+                        </div><!--/popup-content-->
+                        <!-- === product-popup-footer === -->
+
+                        <div class="popup-table">
+                            <div class="popup-cell">
+                                <div class="price">
+                                    <span class="h3">@product.Price <small>@p ₺</small></span>
+                                </div>
+                            </div>
+                            <div class="popup-cell">
+                                <div class="popup-buttons">
+                                    <a href="/Urun/@product.Slug"><span class="icon icon-eye"></span> <span class="hidden-xs">Detaylı İncele</span></a>
+                                    @*<a href="javascript:void(0);"><span class="icon icon-cart"></span> <span class="hidden-xs">Buy</span></a>*@
+                                </div>
+                            </div>
+                        </div>
+
+                    </div> <!--/product-->
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
+

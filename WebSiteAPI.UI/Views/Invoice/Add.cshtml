@@ -1,0 +1,56 @@
+﻿@using WebSiteAPI.Application.DTOs.Invoice;
+
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-sm-8 m-auto">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-header-2">
+                    <h5>Ürün Ekleme</h5>
+                </div>
+                <form asp-action="Add" asp-controller="Invoice" method="post" class="theme-form theme-form-2 mega-form" enctype="multipart/form-data">
+                    <div class="mb-4 row align-items-center">
+                        <label class="form-label-title col-sm-3 mb-0">
+                            Fatura Adı
+                        </label>
+                        <div class="col-sm-9">
+                            <input type="text" id="Name" name="Name" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="mb-4 row align-items-center">
+                        <label class="form-label-title col-sm-3 mb-0">
+                            Fatura Fiyatı
+                        </label>
+                        <div class="col-sm-9">
+                            <input type="number" id="Price" name="Price" class="form-control" step="0.01" required>
+                        </div>
+                    </div>
+                     <div class="mb-4 row align-items-center">
+                                <label class="col-sm-3 col-form-label form-label-title">Dosya</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control form-choose" type="file" name="Files" multiple>
+                                </div>
+                            </div>
+                              <div class="mb-4 row align-items-center">
+                                <label class="col-sm-3 col-form-label form-label-title">Fatura Türü</label>
+                                <div class="col-sm-9">
+                            <label>
+                                <input type="radio" name="Type" checked value="1"> <span>Gelen Fatura</span>
+                            </label>
+                            <label> <input type="radio" name="Type" value="2" /> <span>Kesilen Fatura</span></label>
+                                </div>
+                            </div>
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+

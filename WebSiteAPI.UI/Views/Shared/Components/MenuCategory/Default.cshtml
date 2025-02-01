@@ -1,0 +1,27 @@
+﻿@using WebSiteAPI.Domain.Entities;
+@using WebSiteAPI.Infrastructure.Operations;
+@model List<Category>
+
+<li>
+    <a href="/Urunler">Ürünler <span class="open-dropdown"><i class="fa fa-angle-down"></i></span></a>
+    <div class="navbar-dropdown navbar-dropdown-single">
+        <div class="navbar-box">
+
+
+            <div class="box-2">
+                <div class="box clearfix">
+                    <ul>
+                        <li class="label"><a href="/Urunler">Ürünler</a></li>
+
+                        @foreach (var category in Model)
+                        {
+
+                            <li>  <a href="@Url.Action("ProductList", "Product", new { catName=UrlHelperOperation.NormalizeCategoryForUrl(category.Name)})">@category.Name</a></li>
+                        }
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</li>

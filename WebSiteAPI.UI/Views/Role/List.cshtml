@@ -1,0 +1,37 @@
+﻿@model List<string>
+@{
+    ViewData["Title"] = "List";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+@{
+    ViewData["Title"] = "Rol Listesi";
+}
+<h2>Mevcut Roller</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Rol Adı</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var role in Model)
+        {
+            <tr>
+                <td>@role</td>
+                <td>
+                    <form method="post" action="/Role/Delete">
+                        <input type="hidden" name="roleName" value="@role" />
+                        <button type="submit" class="btn btn-danger">Sil</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="/Role/Create" class="btn btn-primary">Yeni Rol Ekle</a>

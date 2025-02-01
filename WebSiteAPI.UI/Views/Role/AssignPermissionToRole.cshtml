@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewData["Title"] = "AssignPermissionToRole";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<h2>Role Yetki Ata</h2>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+<form method="post" action="/Role/AssignPermissionToRole">
+    <div class="form-group">
+        <label for="roleId">Rol Seç</label>
+        <select class="form-control" id="roleId" name="roleId" required>
+            @foreach (var role in ViewBag.Roles)
+            {
+                <option value="@role.Id" selected="@(role.Id == Context.Request.Query["roleId"] ? "selected" : null)">@role.Name</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="permissionIds">Yetkiler</label>
+        @foreach (var permission in ViewBag.Permissions)
+        {
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="permissionIds" value="@permission.Id"
+                    @(ViewBag.AssignedPermissions.Contains(permission.Id) ? "checked" : "")>
+                <label class="form-check-label">@permission.Name</label>
+            </div>
+        }
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Ata</button>
+</form>

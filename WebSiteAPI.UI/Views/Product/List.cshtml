@@ -1,0 +1,87 @@
+﻿@{
+    ViewData["Title"] = "List";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="col-sm-12">
+    <div class="card card-table">
+        <div class="card-body">
+            <div class="title-header option-title d-sm-flex d-block">
+                <h5>Ürünler</h5>
+                <div class="right-options">
+                    <ul>
+
+                        <li>
+                            <a class="btn btn-solid" href="/Product/Add">Ürün Ekle</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <div class="table-responsive">
+                    <table class="table all-package theme-table table-product" id="table_id">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Ürün Adı</th>
+                                <th>Fiyat</th>
+                                @*<th>Status</th>*@
+                                <th>#</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var product in Model.Products)
+                            {
+                                <tr>
+
+                                    @foreach (var imageFile in product.ProductImageFiles)
+                                    {
+                                        <td>
+
+
+                                            <div class="table-image">
+                                                <img src="~/@imageFile.Path" class="img-fluid"
+                                             alt="">
+
+                                            </div>
+                                        </td>
+                                        break;
+                                    }
+
+
+                                    <td>@product.Name</td>
+
+
+
+                                    <td class="td-price">@product.Price ₺ </td>
+
+                                    @* <td class="status-danger">
+                                <span>Pending</span>
+                                </td>*@
+
+                                    <td>
+                                        <ul>
+                                            <li>
+                                                <a asp-action="Update" asp-route-id="@product.Id">
+                                                    <i class="ri-pencil-line"></i>
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="@Url.Action("Delete", "Product", new { productId = product.Id })">
+                                                    <i class="ri-delete-bin-line"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

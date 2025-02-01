@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Yeni Rol Ekle</h2>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+<form method="post" action="/Role/Add">
+    <div class="form-group">
+        <label for="roleName">Rol Adı</label>
+        <input type="text" class="form-control" id="roleName" name="roleName" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Ekle</button>
+</form>

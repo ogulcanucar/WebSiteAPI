@@ -1,0 +1,314 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="header-content">
+
+    <div class="owl-slider">
+        <div class="item" style="background-image:url(../WebSite/assets/images/gallery-9.png)">
+            <div class="box">
+                <div class="container">
+                    <h2 class="title animated h1" data-animation="fadeInDown">Modern Ofis Koltuk İmalatı</h2>
+                    <div class="animated" data-animation="fadeInUp">
+                    Fiyat ve daha fazla bilgi için bizimle iletişime geçin.
+                    </div>
+                    <div class="animated" data-animation="fadeInUp">
+                        <a aria-label="Chat on WhatsApp" href="https://wa.me/+905059789407?text=Merhaba, ürünleriniz hakkında daha fazla bilgi alabilir miyim?" target="_blank" class="btn btn-main">
+                            <i class="icon icon-cart"></i> Daha fazla bilgi için  <a/>
+                    </div>
+                </div>
+            </div>
+        </div>    
+        <div class="item" style="background-image:url(../WebSite/assets/images/gallery-10.png)">
+            <div class="box">
+                <div class="container">
+                    <h2 class="title animated h1" data-animation="fadeInDown">Modern Ofis Koltuk İmalatı</h2>
+                    <div class="animated" data-animation="fadeInUp">
+                        Fiyat ve daha fazla bilgi için bizimle iletişime geçin.
+                    </div>
+                    <div class="animated" data-animation="fadeInUp">
+                        <a aria-label="Chat on WhatsApp" href="https://wa.me/+905059789407?text=Merhaba, ürünleriniz hakkında daha fazla bilgi alabilir miyim?" target="_blank" class="btn btn-main">
+                            <i class="icon icon-cart"></i> Daha fazla bilgi için  <a />
+                    </div>
+                </div>
+            </div>
+        </div>
+          <div class="item" style="background-image:url(../WebSite/assets/images/gallery-9.png)">
+            <div class="box">
+                <div class="container">
+                    <h2 class="title animated h1" data-animation="fadeInDown">Modern Ofis Koltuk İmalatı</h2>
+                    <div class="animated" data-animation="fadeInUp">
+                    Fiyat ve daha fazla bilgi için bizimle iletişime geçin.
+                    </div>
+                    <div class="animated" data-animation="fadeInUp">
+                        <a aria-label="Chat on WhatsApp" href="https://wa.me/+905059789407?text=Merhaba, ürünleriniz hakkında daha fazla bilgi alabilir miyim?" target="_blank" class="btn btn-main">
+                            <i class="icon icon-cart"></i> Daha fazla bilgi için  <a/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div> 
+</section>
+<section class="owl-icons-wrapper owl-icons-frontpage">
+
+    <div class="container">
+
+        <div class="owl-icons">
+            <a href="#">
+                <figure>
+                    <i class="f-icon f-icon-sofa"></i>
+                    <figcaption>İkili & Üçlü Ofis Kanapesi</figcaption>
+                </figure>
+            </a>
+            <a href="#">
+                <figure>
+                    <i class="f-icon f-icon-armchair"></i>
+                    <figcaption>Ofis Kanepesi</figcaption>
+                </figure>
+            </a>
+            <a href="#">
+                <figure>
+                    <i class="f-icon f-icon-chair"></i>
+                    <figcaption>Cafe Sandalye</figcaption>
+                </figure>
+            </a>
+            <a href="#">
+                <figure>
+                    <i class="f-icon f-icon-dining-table"></i>
+                    <figcaption>Cafe Masası</figcaption>
+                </figure>
+            </a>
+            <a href="#">
+                <figure>
+                    <i class="f-icon f-icon-media-cabinet"></i>
+                    <figcaption>Televizyon Ünitesi </figcaption>
+                </figure>
+            </a>
+            <a href="#">
+                <figure>
+                    <i class="f-icon f-icon-table"></i>
+                    <figcaption>Ofis Masası</figcaption>
+                </figure>
+            </a>
+            <a href="#">
+                <figure>
+                    <i class="f-icon f-icon-bookcase"></i>
+                    <figcaption>Kitaplık</figcaption>
+                </figure>
+            </a>
+
+            <a href="#">
+                <figure>
+                    <i class="f-icon f-icon-bedroom"></i>
+                    <figcaption>Yatak Odası</figcaption>
+                </figure>
+            </a>            
+            <a href="#">
+                <figure>
+                    <i class="f-icon f-icon-office"></i>
+                    <figcaption>Ofis Masa Takımı</figcaption>
+                </figure>
+            </a>
+            <a href="#">
+                <figure>
+                    <i class="f-icon f-icon-bar-set"></i>
+                    <figcaption>Bar Taburesi</figcaption>
+                </figure>
+            </a>
+
+        </div> 
+    </div> 
+</section>
+<section class="products">
+    <div class="container">
+
+        <header>
+            <div class="row">
+                <div class="col-md-offset-2 col-md-8 text-center">
+                    <h2 class="title">Öne Çıkan Ürünler</h2>
+                    <div class="text">
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="row">
+
+            @foreach (var product in Model.Products)
+            {
+                <div class="col-md-4 col-xs-6">
+
+                    <article>
+
+                        <div class="figure-grid">
+                            <div class="image">
+                                <a>
+                                    @foreach (var image in product.ProductImageFiles)
+                                    {
+                                        <img src="~/photo-images/@image.FileName" alt="@product.Name" width="360" height="360" />
+                                        break;
+                                    }
+
+                                </a>
+                            </div>
+                            <div class="text">
+                                <h2 class="title h4"><a href="/Urun/@product.Slug">@product.Name</a></h2>
+                                <sub>
+                                    @{
+                                        decimal a = product.Price;
+                                        decimal p = 10 * a / 100;
+                                        p += product.Price;
+                                    } @p ₺,-
+                                </sub>
+                                <sup>@product.Price ₺</sup>
+                                <span class="description clearfix">@product.Description</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+
+            }
+        </div>
+        <div class="wrapper-more">
+            <a href="/Urunler" class="btn btn-main">Daha Fazlası </a>
+        </div>
+        <div class="popup-main mfp-hide" id="productid1">
+            <div class="product">
+                <div class="popup-title">
+                    <div class="h1 title">Laura <small>product category</small></div>
+                </div>
+                <div class="owl-product-gallery">
+                    <img src="~/WebSite/assets/images/product-1.png" alt="" width="640" />
+                    <img src="~/WebSite/assets/images/product-2.png" alt="" width="640" />
+                    <img src="~/WebSite/assets/images/product-3.png" alt="" width="640" />
+                    <img src="~/WebSite/assets/images/product-4.png" alt="" width="640" />
+                </div>
+                <div class="popup-content">
+                    <div class="product-info-wrapper">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="info-box">
+                                    <strong>Maifacturer</strong>
+                                    <span>Brand name</span>
+                                </div>
+                                <div class="info-box">
+                                    <strong>Materials</strong>
+                                    <span>Wood, Leather, Acrylic</span>
+                                </div>
+                                <div class="info-box">
+                                    <strong>Availability</strong>
+                                    <span><i class="fa fa-check-square-o"></i> in stock</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="info-box">
+                                    <strong>Available Colors</strong>
+                                    <div class="product-colors clearfix">
+                                        <span class="color-btn color-btn-red"></span>
+                                        <span class="color-btn color-btn-blue checked"></span>
+                                        <span class="color-btn color-btn-green"></span>
+                                        <span class="color-btn color-btn-gray"></span>
+                                        <span class="color-btn color-btn-biege"></span>
+                                    </div>
+                                </div>
+                                <div class="info-box">
+                                    <strong>Choose size</strong>
+                                    <div class="product-colors clearfix">
+                                        <span class="color-btn color-btn-biege">S</span>
+                                        <span class="color-btn color-btn-biege checked">M</span>
+                                        <span class="color-btn color-btn-biege">XL</span>
+                                        <span class="color-btn color-btn-biege">XXL</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div> 
+                    </div> 
+                </div> 
+                <div class="popup-table">
+                    <div class="popup-cell">
+                        <div class="price">
+                            <span class="h3">$ 1999,00 <small>$ 2999,00</small></span>
+                        </div>
+                    </div>
+                    <div class="popup-cell">
+                        <div class="popup-buttons">
+                            <a href="product.html"><span class="icon icon-eye"></span> <span class="hidden-xs">View more</span></a>
+                            <a href="javascript:void(0);"><span class="icon icon-cart"></span> <span class="hidden-xs">Buy</span></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div> 
+        </div> 
+    </div> 
+</section>
+<section class="stretcher-wrapper">
+
+    <header class="hidden">   
+        <div class="container">
+            <div class="row">
+                <div class="col-md-offset-2 col-md-8 text-center">
+                    <h1 class="h2 title">Popular categories</h1>
+                    <div class="text">
+                        <p>
+                            Whether you are changing your home, or moving into a new one, you will find a huge selection of quality living room furniture,
+                            bedroom furniture, dining room furniture and the best value at Furniture factory
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</section>
+<section class="banner" style="background-image:url(~/WebSite/assets/images/gallery-4.jpg)">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-2 col-md-8 text-center">
+                <h2 class="title">Oday Furniture</h2>
+                <p>
+
+                    1997 yılında kurulan firmamız, Oday Furniture, kaliteli mobilya üretiminde öncü bir rol üstlenmektedir. Cafe sandalyeleri, masaları, ofis masaları, ofis koltukları ve benzeri ürünlerin imalatında uzmanlaşan şirketimiz, yaratıcılığı ve kaliteyi bir araya getirerek müşterilerine estetik ve dayanıklı mobilya çözümleri sunmaktadır. Her bir ürünümüz, özenle seçilmiş malzemeler ve ustaca zanaatkârlıkla birleştirilerek, kullanıcılarına uzun ömürlü ve şık mobilya deneyimleri yaşatmayı hedeflemektedir. Oday Furniture olarak, müşteri memnuniyetini ön planda tutarak, tasarım ve fonksiyonelliği bir araya getiren özgün mobilya koleksiyonlarımızla sektörde kendimize sağlam bir yer edinmekteyiz.
+                </p>
+                <p><a href="#" class="btn btn-clean">Hakkımızda daha fazla bilgi için</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="instagram">
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-offset-2 col-md-8 text-center">
+                    <h2 class="h2 title">Bizleri Takip Edin <i class="fa fa-instagram fa-2x"></i> Instagram </h2>
+                    <div class="text">
+                        <p> Oday.Furniture</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="gallery clearfix">
+        <a class="item" href="https://www.instagram.com/oday.furniture/" target="_blank">
+            <img src="~/WebSite/assets/images/i1.png" alt="Oday Furniture Cafe ve Ofis Koltukları İmalatı" />
+        </a>
+        <a class="item" href="https://www.instagram.com/oday.furniture/" target="_blank">
+            <img src="~/WebSite/assets/images/i2.jpg" alt="Oday Furniture Cafe ve Ofis Koltukları İmalatı" />
+        </a>
+        <a class="item" href="https://www.instagram.com/oday.furniture/" target="_blank">
+            <img src="~/WebSite/assets/images/i3.png" alt="Oday Furniture Cafe ve Ofis Koltukları İmalatı" />
+        </a>
+        <a class="item" href="https://www.instagram.com/oday.furniture/" target="_blank">
+            <img src="~/WebSite/assets/images/i4.png" alt="Oday Furniture Cafe ve Ofis Koltukları İmalatı" />
+        </a>
+        <a class="item" href="https://www.instagram.com/oday.furniture/" target="_blank">
+            <img src="~/WebSite/assets/images/i5.png" alt="Oday Furniture Cafe ve Ofis Koltukları İmalatı" />
+        </a>
+        <a class="item" href="https://www.instagram.com/oday.furniture/" target="_blank">
+            <img src="~/WebSite/assets/images/i6.png" alt="Oday Furniture Cafe ve Ofis Koltukları İmalatı" />
+        </a>
+
+    </div>
+</section>

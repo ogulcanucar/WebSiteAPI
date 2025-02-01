@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "List";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="col-sm-12">
+    <div class="card card-table">
+        <div class="card-body">
+            <div class="title-header option-title">
+                <h5>Kategoriler</h5>
+                <form class="d-inline-flex">
+                    <a asp-action="Add" class="align-items-center btn btn-theme d-flex">
+                        <i data-feather="plus"></i>Yeni Kategori Ekle
+                    </a>
+                </form>
+            </div>
+            <div class="table-responsive table-product">
+                <table class="table all-package theme-table" id="table_id">
+                    <thead>
+                        <tr>
+                            <th>Adı</th>
+                            <th>Açıklaması</th>
+                            <th>İşlem</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var category in Model.Categories)
+                        {
+                            <tr>
+                                @*<td>@user.Id</td>*@
+                                <td>@category.Name</td>
+                                <td>@category.Description</td>
+                                <td>
+                                    <ul class="table-action">
+
+                                        <li>
+                                            <a>
+
+                                                <a asp-action="Update" asp-route-id="@category.Id" class="edit" data-toggle="tooltip" title="Düzenle">
+                                                    <i class="ri-pencil-line"></i>
+                                                </a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("Delete", "Category", new { Id = category.Id })">
+                                                <i class="ri-delete-bin-line"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

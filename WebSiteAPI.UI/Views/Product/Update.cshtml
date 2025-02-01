@@ -1,0 +1,92 @@
+﻿@using WebSiteAPI.Domain.Entities;
+@using WebSiteAPI.Application.Features.Queries.Product.GetByIdProduct;
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model GetByIdProductQueryResponse
+
+@if (Model.Product != null)
+{
+    var product = (Product)Model.Product;
+
+    <div class="col-sm-8 m-auto">
+        <div class="card">
+            <div class="card-body">
+                <div class="title-header option-title d-sm-flex d-block">
+                <h5>Ürünler</h5>
+                <div class="right-options">
+                    <ul>
+
+                        <li>
+                            <a class="btn btn-solid" href="/Product/Upload/@product.Id">Ürün Resim Yönetimi</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+                <form asp-action="Update" asp-controller="Product" method="post" class="theme-form theme-form-2 mega-form">
+                    <input type="hidden" name="ProductId" value="@product.Id" />
+                    <div class="mb-4 row align-items-center">
+                        <label class="form-label-title col-sm-3 mb-0">
+                            Ürün Adı
+                        </label>
+                        <div class="col-sm-9">
+                            <input type="text" id="Name" name="Name" class="form-control" value="@product.Name" required>
+                        </div>
+                    </div>
+                    <div class="mb-4 row align-items-center">
+                        <label class="form-label-title col-sm-3 mb-0">
+                            Ürün Açıklaması
+                        </label>
+                        <div class="col-sm-9">
+                            <textarea id="Description" name="Description" class="form-control" rows="3" required>@product.Description</textarea>
+                        </div>
+                    </div>
+                    <div class="mb-4 row align-items-center">
+                        <label class="form-label-title col-sm-3 mb-0">
+                            Ürün Fiyatı
+                        </label>
+                        <div class="col-sm-9">
+                            <input type="number" id="Price" name="Price" class="form-control" step="0.01" value="@double.Parse(@product.Price.ToString("0.00"))" required>
+                        </div>
+                    </div>
+                    <div class="mb-4 row align-items-center">
+                        @if (ViewBag.Categories != null)
+                        {
+                            @foreach (var category in ViewBag.Categories)
+                            {
+                                <div class="row">
+                                    <label class="col-sm-3 col-form-label form-label-title">@category.Name</label>
+                                    <div class="col-sm-9">
+                                        <label class="switch">
+                                            @if (product.ProductCategories.Any(cat => cat.CategoryId == category.Id))
+                                            {
+                                                <input type="checkbox" value="@category.Id" name="Categories" id="@category.Id" checked>
+                                                <span class="switch-state"></span>
+                                            }
+                                            else
+                                            {
+                                                <input type="checkbox" value="@category.Id" name="Categories" id="@category.Id">
+                                                <span class="switch-state"></span>
+                                            }
+                                        </label>
+                                    </div>
+                                </div>
+                            }
+                        }
+
+                    </div>
+                    <!-- Diğer güncellenecek alanlar buraya eklenebilir -->
+                    <button type="submit" class="btn btn-primary">Güncelle</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+}
+else
+{
+    <p>Ürün bulunamadı.</p>
+}

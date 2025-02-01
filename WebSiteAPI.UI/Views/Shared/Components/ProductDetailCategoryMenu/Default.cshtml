@@ -1,0 +1,12 @@
+﻿@using WebSiteAPI.Domain.Entities;
+@using WebSiteAPI.Infrastructure.Operations;
+@model List<Category>
+
+@foreach (var category in Model)
+{
+    <div class="info-box">
+
+        <span><strong> <a href="@Url.Action("ProductList", "Product", new { catName=UrlHelperOperation.NormalizeCategoryForUrl(category.Name)})">@category.Name</a></strong></span>
+
+    </div>
+}
