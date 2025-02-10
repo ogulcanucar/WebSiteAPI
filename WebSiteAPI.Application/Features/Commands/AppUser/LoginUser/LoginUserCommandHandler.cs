@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebSiteAPI.Application.Abstractions.Service;
+using WebSiteAPI.Application.Abstractions.Service.Authorization;
 
 namespace WebSiteAPI.Application.Features.Commands.AppUser.LoginUser
 {
@@ -27,8 +28,9 @@ namespace WebSiteAPI.Application.Features.Commands.AppUser.LoginUser
 
             return new LoginUserCommandResponse
             {
-            //    Succeeded = result.Succeeded,
-            //    Message = result.Succeeded ? "Giriş Başarılı" : "Hatalı Şifre veya Parola"
+                Succeeded = true,
+                Message = "Giriş başarılı.",
+                //Token = await _authService.CreateTokenAsync(user)
             };
         }
     }

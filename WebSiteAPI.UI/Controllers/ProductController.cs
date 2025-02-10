@@ -19,7 +19,7 @@ using WebSiteAPI.Infrastructure.Operations;
 
 namespace WebSiteAPI.UI.Controllers
 {
-    [Authorize] // Kullanıcının giriş yapmış olması gerekiyor
+    [Authorize(Policy = "ProductManage")]
     public class ProductController : Controller
     {
 

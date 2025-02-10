@@ -24,7 +24,7 @@ namespace WebSiteAPI.Persistence.Contexts
         public DbSet<Category> Categories { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }
         public DbSet<Cart> Carts { get; set; }
-        public DbSet<CartProduct> CartProducts { get; set; }
+        //public DbSet<CartProduct> CartProducts { get; set; }
         public DbSet<Menu> Menus { get; set; }
 
         public DbSet<Endpoint> Endpoint { get; set; }
@@ -48,8 +48,8 @@ namespace WebSiteAPI.Persistence.Contexts
         {
             base.OnModelCreating(builder);
 
-            Guid superAdminId= Guid.NewGuid();
-            Guid superAdminRoleId= Guid.NewGuid();
+            Guid superAdminId = Guid.NewGuid();
+            Guid superAdminRoleId = Guid.NewGuid();
             var superAdmin = new AppUser
             {
                 Id = superAdminId,
@@ -62,7 +62,7 @@ namespace WebSiteAPI.Persistence.Contexts
                 Name = "Oğulcan",
                 Surname = "Uçar"
             };
-            PasswordHasher<AppUser>hasher = new PasswordHasher<AppUser>();
+            PasswordHasher<AppUser> hasher = new PasswordHasher<AppUser>();
             superAdmin.PasswordHash = hasher.HashPassword(superAdmin, "123456");
             var superAdminRole = new AppRole
             {
@@ -86,15 +86,15 @@ namespace WebSiteAPI.Persistence.Contexts
             builder.Entity<Order>()
                 .HasKey(b => b.Id);
 
-            builder.Entity<Order>()
-                .HasIndex(o => o.OrderCode)
-                .IsUnique();
-
+            //builder.Entity<Order>()
+            //    .HasIndex(o => o.OrderCode)
+            //    .IsUnique();
             builder.Entity<Cart>()
                 .HasOne(b => b.Order)
                 .WithOne(o => o.Cart)
                 .HasForeignKey<Order>(b => b.Id)
-                 .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.NoAction);  // ❌ ON DELETE CASCADE yerine NO ACTION kullan
+
 
             //builder.Entity<Order>()
             //    .HasOne(o => o.CompletedOrder)
@@ -102,6 +102,10 @@ namespace WebSiteAPI.Persistence.Contexts
             //    .HasForeignKey<CompletedOrder>(c => c.OrderId);
 
             // Roller ile Permission (Yetki) arasındaki Many-to-Many ilişkiyi AppRolePermission üzerinden kur
+            builder.Entity<AppRolePermission>()
+    .Property(rp => rp.Id)
+    .HasDefaultValueSql("NEWID()");
+
             builder.Entity<AppRolePermission>()
                 .HasOne(rp => rp.Role)
                 .WithMany(r => r.RolePermissions)

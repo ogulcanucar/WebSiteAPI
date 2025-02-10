@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using MimeKit.Cryptography;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WebSiteAPI.Application.Abstractions.Service;
 using WebSiteAPI.Application.Abstractions.Service.Authorization;
+using WebSiteAPI.Application.DTOs.Auth;
 using WebSiteAPI.Application.DTOs.User;
 using WebSiteAPI.Persistence.Services.Authorization;
 
@@ -60,19 +62,30 @@ namespace WebSiteAPI.Presentation.Controllers
 
             return RedirectToAction("List");
         }
+
         [HttpGet]
         public async Task<IActionResult> AssignRoleToUser(string userId)
         {
-            var users = await _userService.GetAllUsersAsync(); // Kullanıcıları çek
-            var roles = await _roleService.GetRolesAsync(); // Rolleri çek
-            var assignedRoles = string.IsNullOrEmpty(userId) ? new List<string>() : await _userService.GetRolesByUserIdAsync(userId);
+            var users = await _userService.GetAllUsersAsync();
+            var roles = await _roleService.GetRolesAsync();
+
+            var assignedRoles = string.IsNullOrEmpty(userId)
+                ? new List<string>()
+                : await _userService.GetRolesByUserIdAsync(userId);
+
+            // Eğer gelen roller Role nesnesi içeriyorsa, string listeye çevir
+            var roleNames = roles.Select(r => r.ToString()).ToList();
+
             ViewBag.Users = users;
-            ViewBag.Roles = roles;
-            ViewBag.AssignedRoles = assignedRoles; 
-            ViewBag.SelectedUserId = userId; 
+            ViewBag.Roles = roleNames;  // Role nesnesi yerine string liste
+            ViewBag.AssignedRoles = assignedRoles;
+            ViewBag.SelectedUserId = userId;
 
             return View();
         }
+
+
+
 
         [HttpPost]
         public async Task<IActionResult> AssignRoleToUser(string userId, List<string> roleNames)
@@ -85,7 +98,7 @@ namespace WebSiteAPI.Presentation.Controllers
                 return View();
             }
 
-            return RedirectToAction("List", "User");
+            return RedirectToAction("AssignRoleToUser", "Role");
         }
 
         [HttpGet]
@@ -93,66 +106,37 @@ namespace WebSiteAPI.Presentation.Controllers
         {
             var roles = await _roleService.GetRolesPermissionAsync();
             var permissions = await _permissionService.GetAllPermissionsAsync();
-            //var assignedPermissions = roleId != null ? await _permissionService.GetPermissionsByRoleAsync(roleId) : new List<Guid>();
-            var assignedPermissions = string.IsNullOrEmpty(roleId) ? new List<Guid>() : await _permissionService.GetPermissionsByRoleAsync(roleId);
 
-            ViewBag.Roles = roles;
-            ViewBag.Permissions = permissions;
-            ViewBag.AssignedPermissions = assignedPermissions;
-            ViewBag.SelectedRoleId = roleId;
+            var assignedPermissions = string.IsNullOrEmpty(roleId)
+                ? new List<string>()
+                : await _roleService.GetPermissionsByRoleIdAsync(roleId);
+
+            // Eğer roller boşsa, boş bir liste gönder
+            ViewBag.Roles = roles ?? new List<AppRoleDto>();
+            ViewBag.Permissions = permissions?.Select(p => p.Name).ToList() ?? new List<string>();
+
+            ViewBag.AssignedPermissions = assignedPermissions ?? new List<string>();
+            ViewBag.SelectedRoleId = roleId ?? ""; // Boşsa varsayılan değer ata
 
             return View();
         }
 
+
+
         [HttpPost]
-        public async Task<IActionResult> AssignPermissionToRole([FromForm] string roleId, [FromForm] List<string> permissionIds)
+        public async Task<IActionResult> AssignPermissionToRole(string roleId, List<string> permissionNames)
         {
-            if (string.IsNullOrEmpty(roleId) || permissionIds == null || permissionIds.Count == 0)
-            {
-                ViewBag.Error = "Lütfen bir rol ve en az bir yetki seçin!";
-                ViewBag.Roles = await _roleService.GetRolesAsync();
-                ViewBag.Permissions = await _permissionService.GetAllPermissionsAsync();
-                ViewBag.AssignedPermissions = new List<Guid>();
-                ViewBag.SelectedRoleId = roleId;
-                return View();
-            }
-
-            var allPermissions = await _permissionService.GetAllPermissionsAsync();
-
-            Console.WriteLine("Gelen Permission Ids: " + string.Join(", ", permissionIds));
-            Console.WriteLine("Veritabanındaki Yetkiler (ID): " + string.Join(", ", allPermissions.Select(p => p.Id)));
-
-            var selectedPermissions = allPermissions
-                .Where(p => permissionIds.Contains(p.Id.ToString())) // ✅ GUID ile eşleştirme yapıyoruz
-                .Select(p => p.Id)
-                .ToList();
-
-            Console.WriteLine("Seçilen Yetkiler (ID): " + string.Join(", ", selectedPermissions));
-
-            if (!selectedPermissions.Any())
-            {
-                ViewBag.Error = "Seçilen yetkiler veritabanında bulunamadı!";
-                ViewBag.Roles = await _roleService.GetRolesAsync();
-                ViewBag.Permissions = await _permissionService.GetAllPermissionsAsync();
-                ViewBag.AssignedPermissions = await _permissionService.GetPermissionsByRoleAsync(roleId);
-                ViewBag.SelectedRoleId = roleId;
-                return View();
-            }
-
-            var result = await _permissionService.AssignPermissionToRoleAsync(roleId, selectedPermissions);
+            var result = await _roleService.AssignPermissionsToRoleAsync(roleId, permissionNames);
 
             if (!result)
             {
                 ViewBag.Error = "Yetki atama işlemi başarısız!";
-                ViewBag.Roles = await _roleService.GetRolesAsync();
-                ViewBag.Permissions = await _permissionService.GetAllPermissionsAsync();
-                ViewBag.AssignedPermissions = await _permissionService.GetPermissionsByRoleAsync(roleId);
-                ViewBag.SelectedRoleId = roleId;
                 return View();
             }
 
-            return RedirectToAction("AssignPermissionToRole", new { roleId });
+            return RedirectToAction("AssignPermissionToRole", "Role", new { roleId });
         }
+
 
     }
 }

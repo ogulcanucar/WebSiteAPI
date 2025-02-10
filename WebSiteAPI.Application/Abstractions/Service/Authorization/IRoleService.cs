@@ -10,5 +10,7 @@ namespace WebSiteAPI.Application.Abstractions.Service.Authorization
         Task<bool> DeleteRoleAsync(string roleName);
         Task<bool> AssignRoleToUserAsync(string userId, List<string> roleNames);
         Task<List<AppRoleDto>> GetRolesPermissionAsync();
+        Task<List<string>> GetPermissionsByRoleIdAsync(string roleId);
+        Task<bool> AssignPermissionsToRoleAsync(string roleId, List<string> permissionNames);
     }
 }

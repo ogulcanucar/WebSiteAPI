@@ -6,16 +6,21 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using WebSiteAPI.Application.Features.Commands.Auth.Login;
+using WebSiteAPI.Domain.Entities.Identity;
 
 namespace WebSiteAPI.Presentation.Controllers
 {
     public class AuthController : Controller
     {
         private readonly IMediator _mediator;
+        private readonly UserManager<AppUser> _userManager;
+        private readonly RoleManager<AppRole> _roleManager;
 
-        public AuthController(IMediator mediator)
+        public AuthController(IMediator mediator, UserManager<AppUser> userManager, RoleManager<AppRole> roleManager)
         {
             _mediator = mediator;
+            _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         /// <summary>
@@ -41,37 +46,72 @@ namespace WebSiteAPI.Presentation.Controllers
                 return View();
             }
 
-            // **Claims: Kullanıcı bilgilerini taşıyan yapıdır.**
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.NameIdentifier, result.UserId.ToString()), // Kullanıcının GUID ID'si
-                new Claim(ClaimTypes.Name, result.UserName) // Kullanıcının Adı
-            };
+            // Kullanıcıyı veritabanından çekiyoruz
+            var user = await _userManager.FindByIdAsync(result.UserId.ToString());
 
-            // **Kullanıcının Rollerini Claims'e ekleyelim**
-            foreach (var role in result.Roles)
+            if (user == null)
             {
-                claims.Add(new Claim(ClaimTypes.Role, role)); // Kullanıcının sahip olduğu roller
+                ViewBag.Error = "Kullanıcı bulunamadı!";
+                return View();
             }
 
-            // **Claims Identity: Kullanıcının kimliğini oluşturur.**
-            var claimsIdentity = new ClaimsIdentity(claims, IdentityConstants.ApplicationScheme);
-
-            // **AuthenticationProperties: Oturumun kalıcı olup olmadığını belirler.**
-            var authProperties = new AuthenticationProperties
+            // **📌 Kullanıcı Claims Bilgileri**
+            var claims = new List<Claim>
             {
-                IsPersistent = true, // Kullanıcı tarayıcıyı kapatsa bile oturum devam etsin
-                ExpiresUtc = DateTime.UtcNow.AddDays(7) // 7 gün boyunca giriş açık kalsın
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString() ?? Guid.NewGuid().ToString()),
+                new Claim(ClaimTypes.Name, user.UserName ?? "UnknownUser")
             };
 
-            // **Kullanıcıyı oturum açtır**
-            await HttpContext.SignInAsync(IdentityConstants.ApplicationScheme,
-                new ClaimsPrincipal(claimsIdentity), authProperties);
+            // **📌 Kullanıcının Rollerini Claims'e ekleyelim**
+            var userRoles = await _userManager.GetRolesAsync(user);
+            foreach (var role in userRoles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, role));
+                Console.WriteLine($"🟢 Kullanıcı Rolü Eklendi: {role}");
 
-            Console.WriteLine("SignInAsync Başarılı! Kullanıcı: " + result.UserName);
+                // Eğer kullanıcı "Admin" rolündeyse "AdminAccess" yetkisini verelim
+                if (role == "Admin")
+                {
+                    claims.Add(new Claim("Permission", "AdminAccess"));
+                }
+            }
 
-            // Başarılı girişten sonra yönlendirme
-            return RedirectToAction("add", "User");
+            // **📌 Kullanıcının Yetkilerini (Permissions) Veritabanından Alalım**
+            var userPermissions = await GetUserPermissionsAsync(user);
+            foreach (var permission in userPermissions)
+            {
+                claims.Add(new Claim("Permission", permission));
+                Console.WriteLine($"🟢 Kullanıcı Yetkisi Eklendi: {permission}");
+            }
+
+            // **📌 Kullanıcı Kimliği (ClaimsIdentity) Oluştur**
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+
+            // **📌 Oturum Açma Ayarları**
+            var authProperties = new AuthenticationProperties
+            {
+                IsPersistent = true,
+                ExpiresUtc = DateTime.UtcNow.AddDays(7)
+            };
+
+            // **📌 Kullanıcıyı oturum açtır**
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal, authProperties);
+
+            // **📌 Debug Loglar**
+            Console.WriteLine($"✅ Kullanıcı giriş yaptı: {user.UserName}");
+            Console.WriteLine($"✅ Çerez Verisi: {HttpContext.Request.Cookies[".AspNetCore.Cookies"]}");
+
+            // **📌 Kullanıcı Claims'lerini kontrol edelim**
+            var userClaims = HttpContext.User.Claims.ToList();
+            Console.WriteLine($"✅ Kullanıcı Claims Sayısı: {userClaims.Count}");
+            foreach (var claim in userClaims)
+            {
+                Console.WriteLine($"✅ Claim: {claim.Type} - {claim.Value}");
+            }
+
+            // 📌 Giriş yaptıktan sonra Claims Kontrol sayfasına yönlendir
+            return RedirectToAction("ClaimsCheck", "Test");
         }
 
         /// <summary>
@@ -80,8 +120,17 @@ namespace WebSiteAPI.Presentation.Controllers
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
-            await HttpContext.SignOutAsync(IdentityConstants.ApplicationScheme);
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Login", "Auth");
+        }
+
+        /// <summary>
+        /// Kullanıcının Yetkilerini (Claims) Veritabanından Alır
+        /// </summary>
+        private async Task<List<string>> GetUserPermissionsAsync(AppUser user)
+        {
+            var claims = await _userManager.GetClaimsAsync(user);
+            return claims.Where(c => c.Type == "Permission").Select(c => c.Value).ToList();
         }
     }
 }

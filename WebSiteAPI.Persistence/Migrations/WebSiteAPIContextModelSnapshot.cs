@@ -123,8 +123,8 @@ namespace WebSiteAPI.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = new Guid("f3f19fb7-2206-4572-bab7-3d1061c11469"),
-                            RoleId = new Guid("66a4c920-7c1d-44da-b170-72f6a698d7da")
+                            UserId = new Guid("eb0ce616-965c-42ac-ad78-b1a672a35d7d"),
+                            RoleId = new Guid("34f87b02-2318-4f0f-be4d-6b6e71c8d222")
                         });
                 });
 
@@ -249,7 +249,7 @@ namespace WebSiteAPI.Persistence.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("OrderId")
+                    b.Property<Guid?>("OrderId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("UpdatedBy")
@@ -304,7 +304,7 @@ namespace WebSiteAPI.Persistence.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("CartProducts");
+                    b.ToTable("CartProduct");
                 });
 
             modelBuilder.Entity("WebSiteAPI.Domain.Entities.Category", b =>
@@ -457,7 +457,7 @@ namespace WebSiteAPI.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("66a4c920-7c1d-44da-b170-72f6a698d7da"),
+                            Id = new Guid("34f87b02-2318-4f0f-be4d-6b6e71c8d222"),
                             Name = "SuperAdmin",
                             NormalizedName = "SUPERADMIN"
                         });
@@ -467,7 +467,8 @@ namespace WebSiteAPI.Persistence.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -581,9 +582,9 @@ namespace WebSiteAPI.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("f3f19fb7-2206-4572-bab7-3d1061c11469"),
+                            Id = new Guid("eb0ce616-965c-42ac-ad78-b1a672a35d7d"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "904558e5-d471-4ccb-ac86-937a366b8101",
+                            ConcurrencyStamp = "6238b1f0-98b4-4f47-8311-8ea3bcde2061",
                             Email = "ogulcan.ucar@hotmail.com",
                             EmailConfirmed = true,
                             ImageUrl = "asdasdas",
@@ -591,9 +592,9 @@ namespace WebSiteAPI.Persistence.Migrations
                             Name = "Oğulcan",
                             NormalizedEmail = "OGULCAN.UCAR@HOTMAIL.COM",
                             NormalizedUserName = "OGULCANUCAR",
-                            PasswordHash = "AQAAAAIAAYagAAAAEEEYCqNRpqDL8nsDdZNahJ/jjkv0mu05hNj8ZbQV5L+bWdp+UCwF9dGnh9BDVl7JhQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAELBVxFlGc7i2HbKjRw4R7q1/N6+Vo5BbbC1n/Wmbs119HJis+wmACCJFS5VZTzgIDA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "283d5aa1-a6eb-473d-be1e-5ad6d9bb3405",
+                            SecurityStamp = "eab62c8e-bdbb-4967-8ff5-73d872ab253d",
                             Surname = "Uçar",
                             TwoFactorEnabled = false,
                             UserName = "ogulcanucar"
@@ -629,39 +630,39 @@ namespace WebSiteAPI.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("895aaf0e-1459-4e59-b755-e7575e52110f"),
-                            CreatedBy = "f3f19fb7-2206-4572-bab7-3d1061c11469",
-                            CreatedDate = new DateTime(2025, 2, 6, 8, 56, 1, 604, DateTimeKind.Utc).AddTicks(6222),
+                            Id = new Guid("b42c71ec-455a-4324-893c-215dfc393aed"),
+                            CreatedBy = "eb0ce616-965c-42ac-ad78-b1a672a35d7d",
+                            CreatedDate = new DateTime(2025, 2, 10, 12, 40, 4, 168, DateTimeKind.Utc).AddTicks(4680),
                             Name = "Ekleme",
-                            UpdatedBy = "f3f19fb7-2206-4572-bab7-3d1061c11469",
-                            UpdatedDate = new DateTime(2025, 2, 6, 8, 56, 1, 604, DateTimeKind.Utc).AddTicks(6223)
+                            UpdatedBy = "eb0ce616-965c-42ac-ad78-b1a672a35d7d",
+                            UpdatedDate = new DateTime(2025, 2, 10, 12, 40, 4, 168, DateTimeKind.Utc).AddTicks(4681)
                         },
                         new
                         {
-                            Id = new Guid("96c30523-5794-43ce-a01f-ad27be214a7c"),
-                            CreatedBy = "f3f19fb7-2206-4572-bab7-3d1061c11469",
-                            CreatedDate = new DateTime(2025, 2, 6, 8, 56, 1, 604, DateTimeKind.Utc).AddTicks(6393),
+                            Id = new Guid("b9bbfaa0-fddd-4bd8-96d8-ca85648410aa"),
+                            CreatedBy = "eb0ce616-965c-42ac-ad78-b1a672a35d7d",
+                            CreatedDate = new DateTime(2025, 2, 10, 12, 40, 4, 168, DateTimeKind.Utc).AddTicks(4700),
                             Name = "Silme",
-                            UpdatedBy = "f3f19fb7-2206-4572-bab7-3d1061c11469",
-                            UpdatedDate = new DateTime(2025, 2, 6, 8, 56, 1, 604, DateTimeKind.Utc).AddTicks(6394)
+                            UpdatedBy = "eb0ce616-965c-42ac-ad78-b1a672a35d7d",
+                            UpdatedDate = new DateTime(2025, 2, 10, 12, 40, 4, 168, DateTimeKind.Utc).AddTicks(4701)
                         },
                         new
                         {
-                            Id = new Guid("81f0204e-6571-4657-aace-f9a21b505fd4"),
-                            CreatedBy = "f3f19fb7-2206-4572-bab7-3d1061c11469",
-                            CreatedDate = new DateTime(2025, 2, 6, 8, 56, 1, 604, DateTimeKind.Utc).AddTicks(6402),
+                            Id = new Guid("763a1ffd-ff5e-4182-a1da-dcfeb3603e75"),
+                            CreatedBy = "eb0ce616-965c-42ac-ad78-b1a672a35d7d",
+                            CreatedDate = new DateTime(2025, 2, 10, 12, 40, 4, 168, DateTimeKind.Utc).AddTicks(4909),
                             Name = "Güncelleme",
-                            UpdatedBy = "f3f19fb7-2206-4572-bab7-3d1061c11469",
-                            UpdatedDate = new DateTime(2025, 2, 6, 8, 56, 1, 604, DateTimeKind.Utc).AddTicks(6402)
+                            UpdatedBy = "eb0ce616-965c-42ac-ad78-b1a672a35d7d",
+                            UpdatedDate = new DateTime(2025, 2, 10, 12, 40, 4, 168, DateTimeKind.Utc).AddTicks(4909)
                         },
                         new
                         {
-                            Id = new Guid("c41bf9fd-2579-4104-baac-15b4957ee9c0"),
-                            CreatedBy = "f3f19fb7-2206-4572-bab7-3d1061c11469",
-                            CreatedDate = new DateTime(2025, 2, 6, 8, 56, 1, 604, DateTimeKind.Utc).AddTicks(6413),
+                            Id = new Guid("27144af9-a542-4b7f-ade4-ce96a3377a86"),
+                            CreatedBy = "eb0ce616-965c-42ac-ad78-b1a672a35d7d",
+                            CreatedDate = new DateTime(2025, 2, 10, 12, 40, 4, 168, DateTimeKind.Utc).AddTicks(4924),
                             Name = "Listeleme",
-                            UpdatedBy = "f3f19fb7-2206-4572-bab7-3d1061c11469",
-                            UpdatedDate = new DateTime(2025, 2, 6, 8, 56, 1, 604, DateTimeKind.Utc).AddTicks(6413)
+                            UpdatedBy = "eb0ce616-965c-42ac-ad78-b1a672a35d7d",
+                            UpdatedDate = new DateTime(2025, 2, 10, 12, 40, 4, 168, DateTimeKind.Utc).AddTicks(4924)
                         });
                 });
 
@@ -784,10 +785,6 @@ namespace WebSiteAPI.Persistence.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("OrderCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
@@ -798,9 +795,6 @@ namespace WebSiteAPI.Persistence.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("OrderCode")
-                        .IsUnique();
 
                     b.HasIndex("UserId");
 
@@ -1080,7 +1074,7 @@ namespace WebSiteAPI.Persistence.Migrations
             modelBuilder.Entity("WebSiteAPI.Domain.Entities.CartProduct", b =>
                 {
                     b.HasOne("WebSiteAPI.Domain.Entities.Cart", "Cart")
-                        .WithMany("CartProducts")
+                        .WithMany()
                         .HasForeignKey("CartId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1155,7 +1149,7 @@ namespace WebSiteAPI.Persistence.Migrations
             modelBuilder.Entity("WebSiteAPI.Domain.Entities.OrderItem", b =>
                 {
                     b.HasOne("WebSiteAPI.Domain.Entities.Order", "Order")
-                        .WithMany("OrderItems")
+                        .WithMany()
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1192,10 +1186,7 @@ namespace WebSiteAPI.Persistence.Migrations
 
             modelBuilder.Entity("WebSiteAPI.Domain.Entities.Cart", b =>
                 {
-                    b.Navigation("CartProducts");
-
-                    b.Navigation("Order")
-                        .IsRequired();
+                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("WebSiteAPI.Domain.Entities.Category", b =>
@@ -1225,11 +1216,6 @@ namespace WebSiteAPI.Persistence.Migrations
             modelBuilder.Entity("WebSiteAPI.Domain.Entities.Menu", b =>
                 {
                     b.Navigation("Endpoints");
-                });
-
-            modelBuilder.Entity("WebSiteAPI.Domain.Entities.Order", b =>
-                {
-                    b.Navigation("OrderItems");
                 });
 
             modelBuilder.Entity("WebSiteAPI.Domain.Entities.Product", b =>

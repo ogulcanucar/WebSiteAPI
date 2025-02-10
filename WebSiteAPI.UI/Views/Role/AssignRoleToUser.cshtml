@@ -1,43 +1,57 @@
-﻿
-@{
-    ViewData["Title"] = "AssignRoleToUser";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml"; 
- 
+﻿@{
+    ViewData["Title"] = "Kullanıcıya Rol Ata";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var assignedRoles = ViewBag.AssignedRoles as List<string> ?? new List<string>();
 }
 
-@{
-    ViewData["Title"] = "Kullanıcıya Rol Ata";
-}
+  
 
 <h2>Kullanıcıya Rol Ata</h2>
 
-@if (ViewBag.Error != null)
-{
-    <div class="alert alert-danger">@ViewBag.Error</div>
-}
+<form method="post" asp-controller="Role" asp-action="AssignRoleToUser">
+    <input type="hidden" name="userId" value="@ViewBag.SelectedUserId" />
 
-<form method="post" action="/Role/AssignRoleToUser">
-    <div class="form-group">
-        <label for="userId">Kullanıcı Seç</label>
-        <select class="form-control" id="userId" name="userId" required>
-            <option value="">Bir kullanıcı seçin</option>
-            @foreach (var user in ViewBag.Users)
-            {
-                <option value="@user.Id">@user.UserName</option>
-            }
-        </select>
-    </div>
+    <label for="users">Kullanıcı Seç:</label>
+    <select id="users" name="userId" class="form-control">
+        @foreach (var user in ViewBag.Users)
+        {
+            <option value="@user.Id" selected="@(user.Id == ViewBag.SelectedUserId ? "selected" : null)">
+                @user.UserName
+            </option>
+        }
+    </select>
 
-    <div class="form-group">
-        <label for="roleNames">Roller</label>
-        <select class="form-control" id="roleNames" name="roleNames" multiple required>
-            @foreach (var role in ViewBag.Roles)
-            {
-                <option value="@role">@role</option>
-            }
-        </select>
-        <small>Birden fazla rol seçmek için Ctrl tuşuna basılı tutarak seçin.</small>
-    </div>
+    <label for="roles">Rolleri Seç:</label>
+    <select id="roles" name="roleNames" class="form-control" multiple>
+        @foreach (var role in ViewBag.Roles)
+        {
+            string roleName = role.ToString(); // Eğer role bir string değilse string'e çeviriyoruz.
+            bool isAssigned = assignedRoles.Contains(roleName);
+            <option value="@roleName" class="role-option @(isAssigned ? "assigned-role" : "")">
+                @roleName
+            </option>
+        }
+    </select>
 
-    <button type="submit" class="btn btn-primary mt-3">Ata</button>
+    <button type="submit" class="btn btn-primary mt-2">Rol Ata</button>
 </form>
+
+<!-- jQuery ile atanmış rollerin rengini değiştireceğiz -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#roles option.assigned-role").css("background-color", "#28a745").css("color", "white");
+
+        // Seçili kullanıcı değiştiğinde sayfayı yenile
+        $("#users").change(function () {
+            var userId = $(this).val();
+            window.location.href = "/Role/AssignRoleToUser?userId=" + userId;
+        });
+    });
+</script>
+
+<style>
+    .assigned-role {
+        font-weight: bold;
+    }
+</style>

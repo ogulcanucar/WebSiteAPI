@@ -1,0 +1,17 @@
+C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Infrastructure\bin\Debug\net7.0\WebSiteAPI.Infrastructure.deps.json
+C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Infrastructure\bin\Debug\net7.0\WebSiteAPI.Infrastructure.dll
+C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Infrastructure\bin\Debug\net7.0\WebSiteAPI.Infrastructure.pdb
+C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Infrastructure\bin\Debug\net7.0\WebSiteAPI.Application.dll
+C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Infrastructure\bin\Debug\net7.0\WebSiteAPI.Domain.dll
+C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Infrastructure\bin\Debug\net7.0\WebSiteAPI.Application.pdb
+C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Infrastructure\bin\Debug\net7.0\WebSiteAPI.Domain.pdb
+C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Infrastructure\obj\Debug\net7.0\WebSiteAPI.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Infrastructure\obj\Debug\net7.0\WebSiteAPI.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Infrastructure\obj\Debug\net7.0\WebSiteAPI.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Infrastructure\obj\Debug\net7.0\WebSiteAPI.Infrastructure.AssemblyInfo.cs
+C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Infrastructure\obj\Debug\net7.0\WebSiteAPI.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Infrastructure\obj\Debug\net7.0\WebSiteAPI.Infrastructure.csproj.CopyComplete
+C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Infrastructure\obj\Debug\net7.0\WebSiteAPI.Infrastructure.dll
+C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Infrastructure\obj\Debug\net7.0\refint\WebSiteAPI.Infrastructure.dll
+C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Infrastructure\obj\Debug\net7.0\WebSiteAPI.Infrastructure.pdb
+C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Infrastructure\obj\Debug\net7.0\ref\WebSiteAPI.Infrastructure.dll
