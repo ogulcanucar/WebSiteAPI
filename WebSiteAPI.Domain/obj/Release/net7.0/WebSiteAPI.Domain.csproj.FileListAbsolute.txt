@@ -1,0 +1,14 @@
+C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Domain\bin\Release\net7.0\WebSiteAPI.Domain.deps.json
+C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Domain\bin\Release\net7.0\WebSiteAPI.Domain.runtimeconfig.json
+C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Domain\bin\Release\net7.0\WebSiteAPI.Domain.dll
+C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Domain\bin\Release\net7.0\WebSiteAPI.Domain.pdb
+C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Domain\obj\Release\net7.0\WebSiteAPI.Domain.csproj.AssemblyReference.cache
+C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Domain\obj\Release\net7.0\WebSiteAPI.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Domain\obj\Release\net7.0\WebSiteAPI.Domain.AssemblyInfoInputs.cache
+C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Domain\obj\Release\net7.0\WebSiteAPI.Domain.AssemblyInfo.cs
+C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Domain\obj\Release\net7.0\WebSiteAPI.Domain.csproj.CoreCompileInputs.cache
+C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Domain\obj\Release\net7.0\WebSiteAPI.Domain.dll
+C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Domain\obj\Release\net7.0\refint\WebSiteAPI.Domain.dll
+C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Domain\obj\Release\net7.0\WebSiteAPI.Domain.pdb
+C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Domain\obj\Release\net7.0\WebSiteAPI.Domain.genruntimeconfig.cache
+C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Domain\obj\Release\net7.0\ref\WebSiteAPI.Domain.dll
