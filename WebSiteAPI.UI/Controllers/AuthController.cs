@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using System.Threading.Tasks;
 using WebSiteAPI.Application.Features.Commands.Auth.Login;
 using WebSiteAPI.Domain.Entities.Identity;
 
@@ -23,100 +22,85 @@ namespace WebSiteAPI.Presentation.Controllers
             _roleManager = roleManager;
         }
 
-        /// <summary>
-        /// Kullanıcı giriş sayfasını döndürür.
-        /// </summary>
         [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
 
-        /// <summary>
-        /// Kullanıcı girişini kontrol eder ve oturum açar.
-        /// </summary>
         [HttpPost]
         public async Task<IActionResult> Login(string username, string password)
         {
+            // MediatR üzerinden LoginCommand'i çalıştırıyoruz
             var result = await _mediator.Send(new LoginCommand(username, password));
 
+            // Eğer result null döndüyse, kullanıcı adı/şifre hatalı
             if (result == null)
             {
                 ViewBag.Error = "Geçersiz kullanıcı adı veya şifre!";
                 return View();
             }
 
-            // Kullanıcıyı veritabanından çekiyoruz
+            // Kullanıcı bilgilerini veritabanından çekiyoruz
             var user = await _userManager.FindByIdAsync(result.UserId.ToString());
-
             if (user == null)
             {
                 ViewBag.Error = "Kullanıcı bulunamadı!";
                 return View();
             }
 
-            // **📌 Kullanıcı Claims Bilgileri**
+            // 1) Claims listesi oluştur
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString() ?? Guid.NewGuid().ToString()),
                 new Claim(ClaimTypes.Name, user.UserName ?? "UnknownUser")
             };
 
-            // **📌 Kullanıcının Rollerini Claims'e ekleyelim**
+            // 2) Kullanıcının rollerini ekle
             var userRoles = await _userManager.GetRolesAsync(user);
             foreach (var role in userRoles)
             {
                 claims.Add(new Claim(ClaimTypes.Role, role));
-                Console.WriteLine($"🟢 Kullanıcı Rolü Eklendi: {role}");
+                Console.WriteLine($"🟢 Kullanıcı Rolü: {role}");
 
-                // Eğer kullanıcı "Admin" rolündeyse "AdminAccess" yetkisini verelim
+                // Örnek: Admin rolüne özel bir permission ekleyelim
                 if (role == "Admin")
-                {
                     claims.Add(new Claim("Permission", "AdminAccess"));
-                }
             }
 
-            // **📌 Kullanıcının Yetkilerini (Permissions) Veritabanından Alalım**
+            // 3) Kullanıcının veritabanında tanımlı yetkilerini al (Permission Claim)
             var userPermissions = await GetUserPermissionsAsync(user);
             foreach (var permission in userPermissions)
             {
                 claims.Add(new Claim("Permission", permission));
-                Console.WriteLine($"🟢 Kullanıcı Yetkisi Eklendi: {permission}");
+                Console.WriteLine($"🟢 Kullanıcı Yetkisi: {permission}");
             }
 
-            // **📌 Kullanıcı Kimliği (ClaimsIdentity) Oluştur**
+            // 4) ClaimsIdentity ve ClaimsPrincipal oluştur
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
 
-            // **📌 Oturum Açma Ayarları**
+            // 5) AuthenticationProperties ayarla (Kalıcı oturum)
             var authProperties = new AuthenticationProperties
             {
                 IsPersistent = true,
                 ExpiresUtc = DateTime.UtcNow.AddDays(7)
             };
 
-            // **📌 Kullanıcıyı oturum açtır**
+            // 6) SignIn (CookieAuthenticationDefaults.AuthenticationScheme)
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal, authProperties);
 
-            // **📌 Debug Loglar**
+            // Debug loglar
             Console.WriteLine($"✅ Kullanıcı giriş yaptı: {user.UserName}");
-            Console.WriteLine($"✅ Çerez Verisi: {HttpContext.Request.Cookies[".AspNetCore.Cookies"]}");
-
-            // **📌 Kullanıcı Claims'lerini kontrol edelim**
             var userClaims = HttpContext.User.Claims.ToList();
-            Console.WriteLine($"✅ Kullanıcı Claims Sayısı: {userClaims.Count}");
+            Console.WriteLine($"✅ Claims Count (Login Sonrası): {userClaims.Count}");
             foreach (var claim in userClaims)
-            {
-                Console.WriteLine($"✅ Claim: {claim.Type} - {claim.Value}");
-            }
+                Console.WriteLine($"   - {claim.Type} : {claim.Value}");
 
-            // 📌 Giriş yaptıktan sonra Claims Kontrol sayfasına yönlendir
+            // Giriş sonrası test sayfasına yönlendirelim
             return RedirectToAction("ClaimsCheck", "Test");
         }
 
-        /// <summary>
-        /// Kullanıcıyı oturumdan çıkarır.
-        /// </summary>
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
@@ -125,7 +109,8 @@ namespace WebSiteAPI.Presentation.Controllers
         }
 
         /// <summary>
-        /// Kullanıcının Yetkilerini (Claims) Veritabanından Alır
+        /// Kullanıcıya tanımlı Permission Claimlerini veritabanından alır.
+        /// Örnek olarak: UserManager üzerinden eklenmiş "Permission" type Claimler
         /// </summary>
         private async Task<List<string>> GetUserPermissionsAsync(AppUser user)
         {
