@@ -7,6 +7,7 @@ C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Domain\obj\Debug\net7.0
 C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Domain\obj\Debug\net7.0\WebSiteAPI.Domain.AssemblyInfoInputs.cache
 C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Domain\obj\Debug\net7.0\WebSiteAPI.Domain.AssemblyInfo.cs
 C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Domain\obj\Debug\net7.0\WebSiteAPI.Domain.csproj.CoreCompileInputs.cache
+C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Domain\obj\Debug\net7.0\WebSiteAPI.Domain.sourcelink.json
 C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Domain\obj\Debug\net7.0\WebSiteAPI.Domain.dll
 C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Domain\obj\Debug\net7.0\refint\WebSiteAPI.Domain.dll
 C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Domain\obj\Debug\net7.0\WebSiteAPI.Domain.pdb

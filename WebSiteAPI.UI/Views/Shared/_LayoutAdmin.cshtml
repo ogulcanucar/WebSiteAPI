@@ -105,7 +105,7 @@
                                 </div>
                                 <ul class="profile-dropdown onhover-show-div">
                                     <li>
-                                        <form method="post" asp-controller="Auth" asp-action="Logout">
+                                        <form method="post" asp-controller="User" asp-action="Logout">
                                             <button type="submit" class="btn btn-danger w-100">
                                                 <i data-feather="log-out"></i> Çıkış Yap
                                             </button>
@@ -303,7 +303,7 @@
                                             <a href="/User/List">Kullanıcılar</a>
                                         </li>
                                         <li>
-                                            <a href="/User/AssignRoleToUser">Kullanıcıya Rol Ekle</a>
+                                            <a href="/Role/AssignRoleToUser">Kullanıcıya Rol Ekle</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -319,6 +319,9 @@
                                         </li>
                                         <li>
                                             <a href="/Role/List">Roller</a>
+                                        </li>
+                                        <li>
+                                            <a href="/Role/AssignPermissionToRole">Rollere Yetki Verme</a>
                                         </li>
 
                                     </ul>

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "0aPCmwI/vmlD9MerztsB97A555khmSTADMiwScwEU3sA70iBgzDx6YFVDuuwehNROVMqBYGIkzv+b6neUKI0kA==",
+  "dgSpecHash": "eZdV8WbUtxI=",
   "success": true,
   "projectFilePath": "C:\\Users\\ogulc\\OneDrive\\Masaüstü\\WebSiteAPI\\WebSiteAPI.Persistence\\WebSiteAPI.Persistence.csproj",
   "expectedPackageFiles": [
@@ -270,11 +270,11 @@
   ],
   "logs": [
     {
-      "code": "NU1603",
+      "code": "NU1903",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Microsoft.AspNetCore.Identity 2.3.0 depends on Microsoft.Extensions.Identity.Core (>= 2.3.0) but Microsoft.Extensions.Identity.Core 2.3.0 was not found. An approximate best match of Microsoft.Extensions.Identity.Core 3.0.0 was resolved.",
-      "libraryId": "Microsoft.Extensions.Identity.Core",
+      "message": "Package 'MimeKit' 4.3.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-gmc6-fwg3-75m5",
+      "libraryId": "MimeKit",
       "targetGraphs": [
         "net7.0"
       ]

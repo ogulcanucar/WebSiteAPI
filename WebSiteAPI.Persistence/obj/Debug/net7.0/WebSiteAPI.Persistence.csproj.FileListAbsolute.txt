@@ -13,7 +13,8 @@ C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Persistence\obj\Debug\n
 C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Persistence\obj\Debug\net7.0\WebSiteAPI.Persistence.AssemblyInfoInputs.cache
 C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Persistence\obj\Debug\net7.0\WebSiteAPI.Persistence.AssemblyInfo.cs
 C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Persistence\obj\Debug\net7.0\WebSiteAPI.Persistence.csproj.CoreCompileInputs.cache
-C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Persistence\obj\Debug\net7.0\WebSiteAPI.Persistence.csproj.CopyComplete
+C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Persistence\obj\Debug\net7.0\WebSiteAPI.Persistence.sourcelink.json
+C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Persistence\obj\Debug\net7.0\WebSiteA.494515CA.Up2Date
 C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Persistence\obj\Debug\net7.0\WebSiteAPI.Persistence.dll
 C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Persistence\obj\Debug\net7.0\refint\WebSiteAPI.Persistence.dll
 C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Persistence\obj\Debug\net7.0\WebSiteAPI.Persistence.pdb

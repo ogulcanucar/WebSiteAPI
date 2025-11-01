@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "CAjw2gECmRXfH3jIp7iBjjgiG55NSGdwWwQqZOlEGxWGFBpPuecwh0WvWRr6epGlSevad6NbwEjKAZNRotVjnw==",
+  "dgSpecHash": "tj6sVkswftU=",
   "success": true,
   "projectFilePath": "C:\\Users\\ogulc\\OneDrive\\Masaüstü\\WebSiteAPI\\WebSiteAPI.Infrastructure\\WebSiteAPI.Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -255,16 +255,5 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1603",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Microsoft.AspNetCore.Identity 2.3.0 depends on Microsoft.Extensions.Identity.Core (>= 2.3.0) but Microsoft.Extensions.Identity.Core 2.3.0 was not found. An approximate best match of Microsoft.Extensions.Identity.Core 3.0.0 was resolved.",
-      "libraryId": "Microsoft.Extensions.Identity.Core",
-      "targetGraphs": [
-        "net7.0"
-      ]
-    }
-  ]
+  "logs": []
 }

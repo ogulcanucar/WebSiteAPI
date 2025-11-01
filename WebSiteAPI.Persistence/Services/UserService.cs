@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using WebSiteAPI.Application.Abstractions.Service;
 using WebSiteAPI.Application.DTOs.Auth;
@@ -75,10 +78,38 @@ namespace WebSiteAPI.Persistence.Services
         }
 
         // ✅ Kullanıcı kimlik doğrulama (Aynı kaldı)
-        public async Task<SignInResult> AuthenticateAsync(string username, string password)
+        public async Task<AuthResponse> AuthenticateAsync(string username, string password)
         {
-            var result = await _signInManager.PasswordSignInAsync(username, password, isPersistent: false, lockoutOnFailure: false);
-            return result;
+            var user = await _userManager.FindByNameAsync(username);
+            if (user == null || !await _userManager.CheckPasswordAsync(user, password))
+                return null;
+
+            var roles = await _userManager.GetRolesAsync(user);
+
+            // Claims oluştur
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Name, user.UserName)
+            };
+            foreach (var role in roles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, role));
+            }
+
+            // Cookie ile oturum aç
+            //await _signInManager.Context.SignInAsync(
+            //    CookieAuthenticationDefaults.AuthenticationScheme,
+            //    new ClaimsPrincipal(new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme)),
+            //    new AuthenticationProperties { IsPersistent = true }
+            //);
+
+            return new AuthResponse
+            {
+                UserId = user.Id,
+                UserName = user.UserName,
+                Roles = roles.ToList(),
+            };
         }
         public async Task<List<UserDto>> GetAllUsersAsync()
         {
@@ -100,11 +131,7 @@ namespace WebSiteAPI.Persistence.Services
             return roles.ToList();
         }
 
-        Task<AuthResponse> IUserService.AuthenticateAsync(string username, string password)
-        {
-            throw new NotImplementedException();
-        }
-
+      
         public Task<AuthResponse> RefreshTokenAsync(string refreshToken)
         {
             throw new NotImplementedException();

@@ -1,0 +1,144 @@
+﻿@{
+    ViewData["Title"] = "İletişim";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<!-- ========================  Main header ======================== -->
+
+<section class="main-header" style="background-image:url(assets/images/gallery-2.jpg)">
+    <header>
+        <div class="container text-center">
+            <h2 class="h2 title">İletişim</h2>
+            <ol class="breadcrumb breadcrumb-inverted">
+                <li><a href="/"><span class="icon icon-home"></span></a></li>
+                <li><a class="active" href="#">İletişim</a></li>
+            </ol>
+        </div>
+    </header>
+</section>
+
+<!-- ========================  Contact ======================== -->
+
+<section class="contact">
+
+    <!-- === Goolge map === -->
+
+    <div id="map"></div>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
+
+                <div class="contact-block">
+
+                    <div class="contact-info">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <figure class="text-center">
+                                    <span class="icon icon-map-marker"></span>
+                                    <figcaption>
+                                        <strong>Adres Bilgileri</strong>
+                                        <span>Ihlamurkuyu Mahallesi, Arife Sokak, No3B, <br />Ümraniye / İstanbul</span>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="col-sm-4">
+                                <figure class="text-center">
+                                    <span class="icon icon-phone"></span>
+                                    <figcaption>
+                                        <strong>Telefon Bilgileri</strong>
+                                        <span>
+                                            <strong>T</strong> +90 505 978 9407 <br />
+                                            @*<strong>F</strong> +1 222 333 5555*@
+                                        </span>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="col-sm-4">
+                                <figure class="text-center">
+                                    <span class="icon icon-clock"></span>
+                                    <figcaption>
+                                        <strong>Working hours</strong>
+                                        <span>
+                                            <strong>Haftaiçi </strong>09:00 - 19:00 <br />
+                                            <strong>Cumartesi</strong> 09:00 - 17:00
+                                        </span>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="banner">
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-10 text-center">
+                                <h2 class="title">İletişim Formu</h2>
+                                <p>
+                                    Merhaba, Oday Furniture adlı firmamıza gösterdiğiniz ilgi için teşekkür ederiz! Mobel Theme ürünleriyle ilgili herhangi bir sorunuz veya talebiniz varsa, lütfen aşağıdaki formu kullanarak bize ulaşın. Size en kısa sürede yardımcı olabilmek adına sabırsızlıkla bekliyoruz.
+                                </p>
+
+                                <div class="contact-form-wrapper">
+
+                                    <a class="btn btn-clean open-form" data-text-open="İletişime Geç" data-text-close="Kapat">İletişime Geç</a>
+
+                                    <div class="contact-form clearfix">
+                                        <form asp-action="Index" asp-controller="Contact" method="post">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <input id="Name" name="Name" type="text" value="" class="form-control" placeholder="Adınız">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <input id="Surname" name="Surname" type="text" value="" class="form-control" placeholder="Soyadınız">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <input id="Phone" name="Phone" type="tel" value="" class="form-control" placeholder="Telefon Numaranız">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <input id="Email" name="Email" type="email" value="" class="form-control" placeholder="E-Posta Adresiniz<">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <input id="Subject" name="Subject" type="text" value="" class="form-control" placeholder="Konu">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <textarea id="Body" name="Body" class="form-control" placeholder="Mesajınız" rows="10"></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12 text-center">
+                                                    <input type="submit" class="btn btn-clean" value="Send message" />
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div><!--col-sm-8-->
+        </div> <!--/row-->
+    </div><!--/container-->
+</section>
+
+<!-- ================== Footer  ================== -->

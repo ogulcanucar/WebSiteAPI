@@ -1,5 +1,4 @@
-﻿using Azure;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Drawing.Design;
@@ -19,7 +18,7 @@ using WebSiteAPI.Infrastructure.Operations;
 
 namespace WebSiteAPI.UI.Controllers
 {
-    [Authorize(Policy = "ProductManage")]
+    // [Authorize(Policy = "ProductManage",Roles ="SuperAdmin")]
     public class ProductController : Controller
     {
 
@@ -42,22 +41,57 @@ namespace WebSiteAPI.UI.Controllers
         [HttpGet]
         public IActionResult Add()
         {
+            //var categories = _categoryReadRepository.GetAll();
+            //ViewBag.Categories = categories;
+
+            //// **Token'ın doğrulanıp doğrulanmadığını kontrol edelim**
+            //ViewBag.Authenticated = User.Identity.IsAuthenticated;
+            //ViewBag.UserRoles = User.Claims.Where(c => c.Type == System.Security.Claims.ClaimTypes.Role).Select(c => c.Value).ToList();
+            //ViewBag.UserId = User.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+
+            //if (!User.Identity.IsAuthenticated)
+            //{
+            //    ViewBag.ErrorMessage = "Token doğrulanamadı!";
+            //    return RedirectToAction("AccessDenied", "Error");
+            //}
+
+            //return View();
+            Console.WriteLine("User.Identity.IsAuthenticated: " + User.Identity.IsAuthenticated);
+
+            Console.WriteLine("---- ADD ACTION ÇALIŞTI ----");
+
             var categories = _categoryReadRepository.GetAll();
+            Console.WriteLine("Kategoriler çekildi. Sayı: " + categories.Count());
+
             ViewBag.Categories = categories;
 
-            // **Token'ın doğrulanıp doğrulanmadığını kontrol edelim**
-            ViewBag.Authenticated = User.Identity.IsAuthenticated;
-            ViewBag.UserRoles = User.Claims.Where(c => c.Type == System.Security.Claims.ClaimTypes.Role).Select(c => c.Value).ToList();
-            ViewBag.UserId = User.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            Console.WriteLine("User.Identity.IsAuthenticated: " + User.Identity.IsAuthenticated);
+
+            var roles = User.Claims
+                .Where(c => c.Type == System.Security.Claims.ClaimTypes.Role)
+                .Select(c => c.Value)
+                .ToList();
+
+            Console.WriteLine("Roller: " + string.Join(", ", roles));
+
+            var userId = User.Claims
+                .FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.NameIdentifier)
+                ?.Value;
+
+            Console.WriteLine("Kullanıcı ID: " + userId);
 
             if (!User.Identity.IsAuthenticated)
             {
+                Console.WriteLine("❌ Kullanıcı doğrulanamadı, AccessDenied’a yönlendiriliyor!");
                 ViewBag.ErrorMessage = "Token doğrulanamadı!";
                 return RedirectToAction("AccessDenied", "Error");
             }
 
+            Console.WriteLine("✅ Kullanıcı doğrulandı, View döndürülüyor.");
             return View();
         }
+
+
 
         [HttpPost]
         public async Task<IActionResult> Add(CreateProductCommandRequest request)

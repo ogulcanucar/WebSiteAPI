@@ -1,5 +1,8 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using WebSiteAPI.Application.Features.Commands.AppUser.CreateUser;
 using WebSiteAPI.Application.Features.Commands.AppUser.DeleteUser;
 using WebSiteAPI.Application.Features.Commands.AppUser.LoginUser;
@@ -37,7 +40,7 @@ namespace WebSiteAPI.UI.Controllers
         public async Task<IActionResult> Delete(DeleteUserCommandRequest deleteUserCommandRequest)
         {
             DeleteUserCommandResponse response = await _mediator.Send(deleteUserCommandRequest);
-            return RedirectToAction("List","User");
+            return RedirectToAction("List", "User");
         }
         public IActionResult Login()
         {
@@ -46,10 +49,57 @@ namespace WebSiteAPI.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginUserCommandRequest loginUserCommandRequest)
         {
-          LoginUserCommandResponse response = await _mediator.Send(loginUserCommandRequest);
-            return View(response);
+
+            if (string.IsNullOrEmpty(loginUserCommandRequest.Username) || string.IsNullOrEmpty(loginUserCommandRequest.Password))
+            {
+                ModelState.AddModelError("", "Kullanıcı adı ve şifre gereklidir.");
+                return View();
+            }
+
+            var authResponse = await _mediator.Send(loginUserCommandRequest);
+
+            if (authResponse == null || !authResponse.Succeeded)
+            {
+                // Hatalı kullanıcı adı / şifre
+                ModelState.AddModelError("", "Kullanıcı adı veya şifre hatalı");
+                return View();
+            }
+
+            // Kullanıcı rolleri
+            var roles = authResponse.Roles ?? new List<string>();
+
+            //  Cookie için kullanıcı bilgilerini Claims olarak hazırla
+            var claims = new List<Claim>
+{
+    new Claim(ClaimTypes.NameIdentifier, authResponse.UserId?.ToString() ?? ""),
+    new Claim(ClaimTypes.Name, authResponse.UserName ?? loginUserCommandRequest.Username)
+};
+
+            foreach (var role in roles)
+                claims.Add(new Claim(ClaimTypes.Role, role));
+
+            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var principal = new ClaimsPrincipal(identity);
+
+            // 🔹 Cookie oluştur (giriş işlemi)
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, new AuthenticationProperties { IsPersistent = true });
+
+
+            // 🔹 (İsteğe bağlı) Rol kontrolü
+            // if (!roles.Contains("SuperAdmin"))
+            //     return RedirectToAction("AccessDenied", "Error");
+
+            // 🔹 Başarılı girişten sonra yönlendirme
+            Console.WriteLine("Login sonrası roller: " + string.Join(", ", roles));
+            return RedirectToAction("Add", "Product");
         }
-      
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Login", "User");
+        }
+
 
     }
 }

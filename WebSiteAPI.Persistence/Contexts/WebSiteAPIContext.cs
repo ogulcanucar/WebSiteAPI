@@ -46,6 +46,11 @@ namespace WebSiteAPI.Persistence.Contexts
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            // Decimal tip düzeltmeleri
+            builder.Entity<Product>().Property(p => p.Price).HasColumnType("decimal(18,2)");
+            builder.Entity<CartProduct>().Property(p => p.Price).HasColumnType("decimal(18,2)");
+            builder.Entity<Invoice>().Property(i => i.Price).HasColumnType("decimal(18,2)");
+            
             base.OnModelCreating(builder);
 
             Guid superAdminId = Guid.NewGuid();
@@ -136,5 +141,6 @@ namespace WebSiteAPI.Persistence.Contexts
 
             return await base.SaveChangesAsync(cancellationToken);
         }
+
     }
 }

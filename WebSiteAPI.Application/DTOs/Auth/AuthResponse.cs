@@ -10,6 +10,6 @@ namespace WebSiteAPI.Application.DTOs.Auth
         public DateTime Expiration { get; set; }   // Token Geçerlilik Süresi
         public Guid UserId { get; set; }           // Kullanıcı Id (GUID)
         public string UserName { get; set; }       // Kullanıcı Adı
-        public List<string> Roles { get; set; }    // Kullanıcının Rolleri
+        public List<string> Roles { get; set; } = new List<string>();   // Kullanıcının Rolleri
     }
 }

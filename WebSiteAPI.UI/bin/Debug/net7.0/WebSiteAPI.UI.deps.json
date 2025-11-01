@@ -2941,7 +2941,10 @@
           "WebSiteAPI.Domain": "1.0.0"
         },
         "runtime": {
-          "WebSiteAPI.Application.dll": {}
+          "WebSiteAPI.Application.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "WebSiteAPI.Domain/1.0.0": {
@@ -2958,7 +2961,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "7.0.12"
         },
         "runtime": {
-          "WebSiteAPI.Domain.dll": {}
+          "WebSiteAPI.Domain.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "WebSiteAPI.Infrastructure/1.0.0": {
@@ -2967,7 +2973,10 @@
           "WebSiteAPI.Application": "1.0.0"
         },
         "runtime": {
-          "WebSiteAPI.Infrastructure.dll": {}
+          "WebSiteAPI.Infrastructure.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "WebSiteAPI.Persistence/1.0.0": {
@@ -2990,7 +2999,10 @@
           "WebSiteAPI.Infrastructure": "1.0.0"
         },
         "runtime": {
-          "WebSiteAPI.Persistence.dll": {}
+          "WebSiteAPI.Persistence.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

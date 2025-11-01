@@ -9,7 +9,8 @@ C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Application\obj\Debug\n
 C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Application\obj\Debug\net7.0\WebSiteAPI.Application.AssemblyInfoInputs.cache
 C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Application\obj\Debug\net7.0\WebSiteAPI.Application.AssemblyInfo.cs
 C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Application\obj\Debug\net7.0\WebSiteAPI.Application.csproj.CoreCompileInputs.cache
-C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Application\obj\Debug\net7.0\WebSiteAPI.Application.csproj.CopyComplete
+C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Application\obj\Debug\net7.0\WebSiteAPI.Application.sourcelink.json
+C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Application\obj\Debug\net7.0\WebSiteA.2A8D44F2.Up2Date
 C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Application\obj\Debug\net7.0\WebSiteAPI.Application.dll
 C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Application\obj\Debug\net7.0\refint\WebSiteAPI.Application.dll
 C:\Users\ogulc\OneDrive\Masaüstü\WebSiteAPI\WebSiteAPI.Application\obj\Debug\net7.0\WebSiteAPI.Application.pdb

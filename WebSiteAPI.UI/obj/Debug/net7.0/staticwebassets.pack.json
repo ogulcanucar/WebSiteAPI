@@ -5881,6 +5881,18 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
+      "Id": "C:\\Users\\ogulc\\OneDrive\\Masaüstü\\WebSiteAPI\\WebSiteAPI.UI\\wwwroot\\photo-images\\153df1f5-d567-49bf-b590-6ad2f73b4533.png",
+      "PackagePath": "staticwebassets\\photo-images\\153df1f5-d567-49bf-b590-6ad2f73b4533.png"
+    },
+    {
+      "Id": "C:\\Users\\ogulc\\OneDrive\\Masaüstü\\WebSiteAPI\\WebSiteAPI.UI\\wwwroot\\photo-images\\682e1121-b648-4587-8a64-fd9bc957a8e8.png",
+      "PackagePath": "staticwebassets\\photo-images\\682e1121-b648-4587-8a64-fd9bc957a8e8.png"
+    },
+    {
+      "Id": "C:\\Users\\ogulc\\OneDrive\\Masaüstü\\WebSiteAPI\\WebSiteAPI.UI\\wwwroot\\photo-images\\Adsiz-tasarim.png",
+      "PackagePath": "staticwebassets\\photo-images\\Adsiz-tasarim.png"
+    },
+    {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.WebSiteAPI.UI.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

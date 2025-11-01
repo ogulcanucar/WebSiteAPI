@@ -123,8 +123,8 @@ namespace WebSiteAPI.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = new Guid("eb0ce616-965c-42ac-ad78-b1a672a35d7d"),
-                            RoleId = new Guid("34f87b02-2318-4f0f-be4d-6b6e71c8d222")
+                            UserId = new Guid("3fda0d50-803f-4bc5-892c-6e1b94edac8f"),
+                            RoleId = new Guid("1fe147af-ca27-49d9-8484-22fe52274e26")
                         });
                 });
 
@@ -457,7 +457,7 @@ namespace WebSiteAPI.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("34f87b02-2318-4f0f-be4d-6b6e71c8d222"),
+                            Id = new Guid("1fe147af-ca27-49d9-8484-22fe52274e26"),
                             Name = "SuperAdmin",
                             NormalizedName = "SUPERADMIN"
                         });
@@ -582,9 +582,9 @@ namespace WebSiteAPI.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("eb0ce616-965c-42ac-ad78-b1a672a35d7d"),
+                            Id = new Guid("3fda0d50-803f-4bc5-892c-6e1b94edac8f"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6238b1f0-98b4-4f47-8311-8ea3bcde2061",
+                            ConcurrencyStamp = "4821875f-46c4-4629-9818-d43803934b5d",
                             Email = "ogulcan.ucar@hotmail.com",
                             EmailConfirmed = true,
                             ImageUrl = "asdasdas",
@@ -592,9 +592,9 @@ namespace WebSiteAPI.Persistence.Migrations
                             Name = "Oğulcan",
                             NormalizedEmail = "OGULCAN.UCAR@HOTMAIL.COM",
                             NormalizedUserName = "OGULCANUCAR",
-                            PasswordHash = "AQAAAAIAAYagAAAAELBVxFlGc7i2HbKjRw4R7q1/N6+Vo5BbbC1n/Wmbs119HJis+wmACCJFS5VZTzgIDA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHGPa2cKvo9Z+tYhU8iK/rQ5wquX8ZTV52jEhcguVNqq0hanowxHPaw0vZmhwLMiiA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "eab62c8e-bdbb-4967-8ff5-73d872ab253d",
+                            SecurityStamp = "daf9010e-b163-49f7-921e-55d74ff2852c",
                             Surname = "Uçar",
                             TwoFactorEnabled = false,
                             UserName = "ogulcanucar"
@@ -630,39 +630,39 @@ namespace WebSiteAPI.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("b42c71ec-455a-4324-893c-215dfc393aed"),
-                            CreatedBy = "eb0ce616-965c-42ac-ad78-b1a672a35d7d",
-                            CreatedDate = new DateTime(2025, 2, 10, 12, 40, 4, 168, DateTimeKind.Utc).AddTicks(4680),
+                            Id = new Guid("3b395012-3b55-4a85-a249-f2917ae77e61"),
+                            CreatedBy = "3fda0d50-803f-4bc5-892c-6e1b94edac8f",
+                            CreatedDate = new DateTime(2025, 10, 30, 11, 0, 38, 345, DateTimeKind.Utc).AddTicks(1773),
                             Name = "Ekleme",
-                            UpdatedBy = "eb0ce616-965c-42ac-ad78-b1a672a35d7d",
-                            UpdatedDate = new DateTime(2025, 2, 10, 12, 40, 4, 168, DateTimeKind.Utc).AddTicks(4681)
+                            UpdatedBy = "3fda0d50-803f-4bc5-892c-6e1b94edac8f",
+                            UpdatedDate = new DateTime(2025, 10, 30, 11, 0, 38, 345, DateTimeKind.Utc).AddTicks(1774)
                         },
                         new
                         {
-                            Id = new Guid("b9bbfaa0-fddd-4bd8-96d8-ca85648410aa"),
-                            CreatedBy = "eb0ce616-965c-42ac-ad78-b1a672a35d7d",
-                            CreatedDate = new DateTime(2025, 2, 10, 12, 40, 4, 168, DateTimeKind.Utc).AddTicks(4700),
+                            Id = new Guid("541cc94e-fa59-4c09-8ec6-64267a448bb5"),
+                            CreatedBy = "3fda0d50-803f-4bc5-892c-6e1b94edac8f",
+                            CreatedDate = new DateTime(2025, 10, 30, 11, 0, 38, 345, DateTimeKind.Utc).AddTicks(1788),
                             Name = "Silme",
-                            UpdatedBy = "eb0ce616-965c-42ac-ad78-b1a672a35d7d",
-                            UpdatedDate = new DateTime(2025, 2, 10, 12, 40, 4, 168, DateTimeKind.Utc).AddTicks(4701)
+                            UpdatedBy = "3fda0d50-803f-4bc5-892c-6e1b94edac8f",
+                            UpdatedDate = new DateTime(2025, 10, 30, 11, 0, 38, 345, DateTimeKind.Utc).AddTicks(1788)
                         },
                         new
                         {
-                            Id = new Guid("763a1ffd-ff5e-4182-a1da-dcfeb3603e75"),
-                            CreatedBy = "eb0ce616-965c-42ac-ad78-b1a672a35d7d",
-                            CreatedDate = new DateTime(2025, 2, 10, 12, 40, 4, 168, DateTimeKind.Utc).AddTicks(4909),
+                            Id = new Guid("99564822-28de-4ff6-a3ca-6d00f542a3fd"),
+                            CreatedBy = "3fda0d50-803f-4bc5-892c-6e1b94edac8f",
+                            CreatedDate = new DateTime(2025, 10, 30, 11, 0, 38, 345, DateTimeKind.Utc).AddTicks(1810),
                             Name = "Güncelleme",
-                            UpdatedBy = "eb0ce616-965c-42ac-ad78-b1a672a35d7d",
-                            UpdatedDate = new DateTime(2025, 2, 10, 12, 40, 4, 168, DateTimeKind.Utc).AddTicks(4909)
+                            UpdatedBy = "3fda0d50-803f-4bc5-892c-6e1b94edac8f",
+                            UpdatedDate = new DateTime(2025, 10, 30, 11, 0, 38, 345, DateTimeKind.Utc).AddTicks(1810)
                         },
                         new
                         {
-                            Id = new Guid("27144af9-a542-4b7f-ade4-ce96a3377a86"),
-                            CreatedBy = "eb0ce616-965c-42ac-ad78-b1a672a35d7d",
-                            CreatedDate = new DateTime(2025, 2, 10, 12, 40, 4, 168, DateTimeKind.Utc).AddTicks(4924),
+                            Id = new Guid("0bb0b1d4-030f-43e9-bdd9-2df72228cfb6"),
+                            CreatedBy = "3fda0d50-803f-4bc5-892c-6e1b94edac8f",
+                            CreatedDate = new DateTime(2025, 10, 30, 11, 0, 38, 345, DateTimeKind.Utc).AddTicks(1820),
                             Name = "Listeleme",
-                            UpdatedBy = "eb0ce616-965c-42ac-ad78-b1a672a35d7d",
-                            UpdatedDate = new DateTime(2025, 2, 10, 12, 40, 4, 168, DateTimeKind.Utc).AddTicks(4924)
+                            UpdatedBy = "3fda0d50-803f-4bc5-892c-6e1b94edac8f",
+                            UpdatedDate = new DateTime(2025, 10, 30, 11, 0, 38, 345, DateTimeKind.Utc).AddTicks(1821)
                         });
                 });
 
